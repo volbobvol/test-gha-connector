@@ -1,0 +1,85 @@
+name: Build App
+
+on:
+ push:
+ pull_request:
+
+jobs:
+
+  build:
+
+    strategy:
+      matrix:
+        configuration: [Debug]
+
+    runs-on: windows-latest
+
+    steps:
+    - name: Log Version
+      run: "echo \"Version 1\""
+
+    - name: Create artifact file
+      run: "echo \"Build: ${{ matrix.configuration }}. Created on: \" > script.ps1"
+    - name: Append create date
+      shell: pwsh
+      run: "echo (Get-Date -Format 'yyyy-MM-dd HH:mm:ss') >> script.ps1"
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3
+      with: 
+        name: ${{ matrix.configuration }}-artifact
+        path: "script.ps1"
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3
+      with: 
+        name: ${{ matrix.configuration }}-artifact2
+        path: "script.ps1"
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3
+      with: 
+        name: ${{ matrix.configuration }}-artifact3
+        path: "script.ps1"
+
+    - name: Run submit signing request
+      id: "submit_with_download"
+      uses: volbobvol/githubactionsgettoknow/actions/submit-signing-request@sync-download-rocess
+      with:
+        connector-url: 'https://githubactions-dev5.connectors.dev.signpath.io:15021'
+        api-token: '${{ secrets.SIGN_PATH_API_TOKEN }}'
+        organization-id: 'fe33c075-e317-4587-9ecc-0495c44c45e0'
+        project-slug: 'GitHubTest'
+        signing-policy-slug: 'TestGithubSP'
+        artifact-configuration-slug: 'initial'
+        artifact-name: ${{ matrix.configuration }}-artifact
+        github-token: '${{ secrets.GITHUB_TOKEN }}'
+        signed-artifact-destination-path: 'signed-script.ps1'
+
+    - name: Run submit signing request and forget
+      uses: volbobvol/githubactionsgettoknow/actions/submit-signing-request@sync-download-rocess
+      with:
+        connector-url: 'https://githubactions-dev5.connectors.dev.signpath.io:15021'
+        api-token: '${{ secrets.SIGN_PATH_API_TOKEN }}'
+        organization-id: 'fe33c075-e317-4587-9ecc-0495c44c45e0'
+        project-slug: 'GitHubTest'
+        signing-policy-slug: 'TestGithubSP'
+        artifact-configuration-slug: 'initial'
+        artifact-name: ${{ matrix.configuration }}-artifact
+        github-token: '${{ secrets.GITHUB_TOKEN }}'
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3
+      with: 
+        name: ${{ matrix.configuration }}-artifact-signed
+        path: "signed-script.ps1"
+
+    - name: Log signing-request-id
+      run:  echo "Output [${{steps.submit_with_download.outputs.signing-request-id }}]"
+    - name: Log signing-request-web-url
+      run: echo "Output [${{steps.submit_with_download.outputs.signing-request-web-url }}]"
+    - name: Log signpath-api-url
+      run: echo "Output [${{steps.submit_with_download.outputs.signpath-api-url }}]"
+    - name: Log signed-artifact-download-url
+      run: echo "Output [${{steps.submit_with_download.outputs.signed-artifact-download-url }}]"
+      
