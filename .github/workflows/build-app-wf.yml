@@ -53,7 +53,7 @@ jobs:
         signing-policy-slug: 'TestGithubSP'
         artifact-configuration-slug: 'initial'
         artifact-name: ${{ matrix.configuration }}-artifact
-        github-token: '${{ secrets.GHA_TOKEN }}'
+        github-token: '${{ secrets.GITHUB_TOKEN }}'
         signed-artifact-destination-path: 'signed-script.ps1'
 
     - name: Run submit signing request and forget
@@ -66,7 +66,7 @@ jobs:
         signing-policy-slug: 'TestGithubSP'
         artifact-configuration-slug: 'initial'
         artifact-name: ${{ matrix.configuration }}-artifact
-        github-token: '${{ secrets.GHA_TOKEN }}'
+        github-token: '${{ secrets.GITHUB_TOKEN }}'
 
     - name: Upload artifact
       uses: actions/upload-artifact@v3
