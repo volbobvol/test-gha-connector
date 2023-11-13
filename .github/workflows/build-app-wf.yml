@@ -82,4 +82,3 @@ jobs:
       run: echo "Output [${{steps.submit_with_download.outputs.signpath-api-url }}]"
     - name: Log signed-artifact-download-url
       run: echo "Output [${{steps.submit_with_download.outputs.signed-artifact-download-url }}]"
-      
