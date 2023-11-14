@@ -31,19 +31,19 @@ jobs:
       uses: actions/upload-artifact@v3
       with: 
         name: ${{ matrix.configuration }}-artifact
-        path: "data"
+        path: "data/"
 
     - name: Upload artifact
       uses: actions/upload-artifact@v3
       with: 
         name: ${{ matrix.configuration }}-artifact2
-        path: "data"
+        path: "data/"
 
     - name: Upload artifact
       uses: actions/upload-artifact@v3
       with: 
         name: ${{ matrix.configuration }}-artifact3
-        path: "data"
+        path: "data/"
 
     - name: Run submit signing request
       id: "submit_with_download"
