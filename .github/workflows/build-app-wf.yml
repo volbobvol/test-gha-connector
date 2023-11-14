@@ -46,28 +46,28 @@ jobs:
       uses: volbobvol/githubactionsgettoknow/actions/submit-signing-request@sync-download-rocess
       with:
         connector-url: 'https://githubactions.connectors.fqa.test.signpath.io:15021/'
-        api-token: '${{ secrets.SIGN_PATH_API_TOKEN_FQA }}'
+        api-token: '${{ secrets.SIGN_PATH_API_TOKEN_FQA_ORG1 }}'
         organization-id: '54145c58-966f-4f56-83c3-4fda3f27da37'
         project-slug: 'GithubTestOrg1'
         signing-policy-slug: 'GithubTestSp'
         artifact-configuration-slug: 'initial'
         artifact-name: ${{ matrix.configuration }}-artifact
         github-token: '${{ secrets.GHA_TOKEN }}'
-        signed-artifact-destination-path: 'as/signed-script.ps1'
+        #signed-artifact-destination-path: 'as/signed-script.ps1'
         
-    # - name: Run submit signing request for FQA ORG2
-      # id: "submit_with_download_org2"
-      # uses: volbobvol/githubactionsgettoknow/actions/submit-signing-request@sync-download-rocess
-      # with:
-        # connector-url: 'https://githubactions.connectors.fqa.test.signpath.io:15021/'
-        # api-token: '${{ secrets.SIGN_PATH_API_TOKEN_FQA }}'
-        # organization-id: '54145c58-966f-4f56-83c3-4fda3f27da37'
-        # project-slug: 'GithubTestOrg1'
-        # signing-policy-slug: 'GithubTestSp'
-        # artifact-configuration-slug: 'initial'
-        # artifact-name: ${{ matrix.configuration }}-artifact
-        # github-token: '${{ secrets.GHA_TOKEN }}'
-        # signed-artifact-destination-path: 'as/signed-script.ps1'
+     - name: Run submit signing request for FQA ORG2
+       id: "submit_with_download_org2"
+       uses: volbobvol/githubactionsgettoknow/actions/submit-signing-request@sync-download-rocess
+       with:
+         connector-url: 'https://githubactions.connectors.fqa.test.signpath.io:15021/'
+         api-token: '${{ secrets.SIGN_PATH_API_TOKEN_FQA_ORG2 }}'
+         organization-id: 'c10efa1c-f5bd-47ad-804b-3f289a39db6c'
+         project-slug: 'GithubTestOrg2'
+         signing-policy-slug: 'GithubTestSp'
+         artifact-configuration-slug: 'initial'
+         artifact-name: ${{ matrix.configuration }}-artifact
+         github-token: '${{ secrets.GHA_TOKEN }}'
+         #signed-artifact-destination-path: 'as/signed-script.ps1'
 
     - name: Upload artifact
       uses: actions/upload-artifact@v3
