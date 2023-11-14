@@ -24,7 +24,6 @@ jobs:
     - name: Create artifact file
       run: "echo \"Build: ${{ matrix.configuration }}. Created on: \" > data/script.ps1"
     - name: Append create date
-      shell: pwsh
       run: "echo (Get-Date -Format 'yyyy-MM-dd HH:mm:ss') >> data/script.ps1"
       
     - name: Upload artifact
@@ -40,7 +39,7 @@ jobs:
         url: https://githubactions.connectors.fqa.test.signpath.io:15021/healthz
         method: GET    
     - name: print ping
-      run: Write-Host "Ping connector: ${{ steps.ping_task.outputs }}"
+      run: echo "Output [${{ steps.ping_task.outputs }}]"
 
     - name: Run submit signing request for FQA ORG1
       id: "submit_with_download_org1"
