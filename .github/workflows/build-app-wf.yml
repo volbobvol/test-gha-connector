@@ -27,56 +27,39 @@ jobs:
       shell: pwsh
       run: "echo (Get-Date -Format 'yyyy-MM-dd HH:mm:ss') >> data/script.ps1"
       
-    - name: Create artifact file
-      run: "echo \"Build: ${{ matrix.configuration }}. Created on: \" > data/script2.ps1"
-    - name: Append create date
-      shell: pwsh
-      run: "echo (Get-Date -Format 'yyyy-MM-dd HH:mm:ss') >> data/script2.ps1"
-
     - name: Upload artifact
       uses: actions/upload-artifact@v3
       with: 
         name: ${{ matrix.configuration }}-artifact
         path: "data/"
 
-    - name: Upload artifact
-      uses: actions/upload-artifact@v3
-      with: 
-        name: ${{ matrix.configuration }}-artifact2
-        path: "data/"
-
-    - name: Upload artifact
-      uses: actions/upload-artifact@v3
-      with: 
-        name: ${{ matrix.configuration }}-artifact3
-        path: "data/"
-
-    - name: Run submit signing request
-      id: "submit_with_download"
+    - name: Run submit signing request for FQA ORG1
+      id: "submit_with_download_org1"
       uses: volbobvol/githubactionsgettoknow/actions/submit-signing-request@sync-download-rocess
       with:
-        #connector-url: 'https://githubactions-dev5.connectors.dev.signpath.io:15021'
-        connector-url: 'https://brx6b0w8-44353.euw.devtunnels.ms'
-        api-token: '${{ secrets.SIGN_PATH_API_TOKEN }}'
-        organization-id: 'fe33c075-e317-4587-9ecc-0495c44c45e0'
-        project-slug: 'GitHubTest'
-        signing-policy-slug: 'TestGithubSP'
+        connector-url: 'https://githubactions.connectors.fqa.test.signpath.io:15021/'
+        api-token: '${{ secrets.SIGN_PATH_API_TOKEN_FQA }}'
+        organization-id: '54145c58-966f-4f56-83c3-4fda3f27da37'
+        project-slug: 'GithubTestOrg1'
+        signing-policy-slug: 'GithubTestSp'
         artifact-configuration-slug: 'initial'
         artifact-name: ${{ matrix.configuration }}-artifact
         github-token: '${{ secrets.GHA_TOKEN }}'
         signed-artifact-destination-path: 'as/signed-script.ps1'
-
-    # - name: Run submit signing request and forget
+        
+    # - name: Run submit signing request for FQA ORG2
+      # id: "submit_with_download_org2"
       # uses: volbobvol/githubactionsgettoknow/actions/submit-signing-request@sync-download-rocess
       # with:
-        # connector-url: 'https://githubactions-dev5.connectors.dev.signpath.io:15021'
-        # api-token: '${{ secrets.SIGN_PATH_API_TOKEN }}'
-        # organization-id: 'fe33c075-e317-4587-9ecc-0495c44c45e0'
-        # project-slug: 'GitHubTest'
-        # signing-policy-slug: 'TestGithubSP'
+        # connector-url: 'https://githubactions.connectors.fqa.test.signpath.io:15021/'
+        # api-token: '${{ secrets.SIGN_PATH_API_TOKEN_FQA }}'
+        # organization-id: '54145c58-966f-4f56-83c3-4fda3f27da37'
+        # project-slug: 'GithubTestOrg1'
+        # signing-policy-slug: 'GithubTestSp'
         # artifact-configuration-slug: 'initial'
         # artifact-name: ${{ matrix.configuration }}-artifact
         # github-token: '${{ secrets.GHA_TOKEN }}'
+        # signed-artifact-destination-path: 'as/signed-script.ps1'
 
     - name: Upload artifact
       uses: actions/upload-artifact@v3
@@ -85,10 +68,19 @@ jobs:
         path: "signed-script.ps1"
 
     - name: Log signing-request-id
-      run:  echo "Output [${{steps.submit_with_download.outputs.signing-request-id }}]"
+      run:  echo "Output [${{steps.submit_with_download_org1.outputs.signing-request-id }}]"
     - name: Log signing-request-web-url
-      run: echo "Output [${{steps.submit_with_download.outputs.signing-request-web-url }}]"
+      run: echo "Output [${{steps.submit_with_download_org1.outputs.signing-request-web-url }}]"
     - name: Log signpath-api-url
-      run: echo "Output [${{steps.submit_with_download.outputs.signpath-api-url }}]"
+      run: echo "Output [${{steps.submit_with_download_org1.outputs.signpath-api-url }}]"
     - name: Log signed-artifact-download-url
-      run: echo "Output [${{steps.submit_with_download.outputs.signed-artifact-download-url }}]"
+      run: echo "Output [${{steps.submit_with_download_org1.outputs.signed-artifact-download-url }}]"
+      
+    - name: Log signing-request-id
+      run:  echo "Output [${{steps.submit_with_download_org2.outputs.signing-request-id }}]"
+    - name: Log signing-request-web-url
+      run: echo "Output [${{steps.submit_with_download_org2.outputs.signing-request-web-url }}]"
+    - name: Log signpath-api-url
+      run: echo "Output [${{steps.submit_with_download_org2.outputs.signpath-api-url }}]"
+    - name: Log signed-artifact-download-url
+      run: echo "Output [${{steps.submit_with_download_org2.outputs.signed-artifact-download-url }}]"
