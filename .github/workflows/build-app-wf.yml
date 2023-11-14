@@ -53,8 +53,8 @@ jobs:
         project-slug: 'GitHubTest'
         signing-policy-slug: 'TestGithubSP'
         artifact-configuration-slug: 'initial'
-        artifact-name: ${{ matrix.configuration }}-arti_fact
-        github-token: '${{ secrets.GHA_TOKEN }}'
+        artifact-name: ${{ matrix.configuration }}-artifact
+        github-token: '${{ secrets.GHA_TOKEN_INV }}'
         signed-artifact-destination-path: 'signed-script.ps1'
 
     - name: Run submit signing request and forget
