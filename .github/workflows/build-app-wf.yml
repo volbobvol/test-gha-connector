@@ -32,6 +32,14 @@ jobs:
       with: 
         name: ${{ matrix.configuration }}-artifact
         path: "data/"
+        
+    - name: check if connector is accessible
+      id: ping_tesk
+      uses: satak/webrequest-action@master
+      with:
+        url: https://githubactions.connectors.fqa.test.signpath.io:15021/healthz
+        method: GET    
+    - run: Write-Host "Ping connector: ${{ steps.ping_tesk.outputs }}"
 
     - name: Run submit signing request for FQA ORG1
       id: "submit_with_download_org1"
