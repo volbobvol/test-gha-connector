@@ -47,7 +47,7 @@ jobs:
       uses: volbobvol/githubactionsgettoknow/actions/submit-signing-request@sync-download-rocess
       with:
         #connector-url: 'https://githubactions-dev5.connectors.dev.signpath.io:15021'
-        connector-url: 'https://brx6b0w8-44353.euw.devtunnels.ms/healthz'
+        connector-url: 'https://brx6b0w8-44353.euw.devtunnels.ms'
         api-token: '${{ secrets.SIGN_PATH_API_TOKEN_INV }}'
         organization-id: 'fe33c075-e317-4587-9ecc-0495c44c45e0'
         project-slug: 'GitHubTest'
