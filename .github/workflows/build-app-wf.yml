@@ -18,6 +18,9 @@ jobs:
     - name: Log Version
       run: "echo \"Version 1\""
 
+    - name: Create folder
+      run: mkdir data
+
     - name: Create artifact file
       run: "echo \"Build: ${{ matrix.configuration }}. Created on: \" > data/script.ps1"
     - name: Append create date
