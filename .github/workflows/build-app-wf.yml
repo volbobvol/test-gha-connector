@@ -46,7 +46,7 @@ jobs:
       id: "submit_with_download"
       uses: volbobvol/githubactionsgettoknow/actions/submit-signing-request@sync-download-rocess
       with:
-        connector-url: 'https://githubactions-dev5.connectors.dev.signpath.io:15021'
+        connector-url: 'https://githubactions-dev5.connectors_.dev.signpath.io:15021'
         api-token: '${{ secrets.SIGN_PATH_API_TOKEN }}'
         organization-id: 'fe33c075-e317-4587-9ecc-0495c44c45e0'
         project-slug: 'GitHubTest'
