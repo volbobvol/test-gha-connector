@@ -55,19 +55,19 @@ jobs:
         artifact-configuration-slug: 'initial'
         artifact-name: ${{ matrix.configuration }}-artifact
         github-token: '${{ secrets.GHA_TOKEN }}'
-        signed-artifact-destination-path: 'signed-script.ps1'
+        #signed-artifact-destination-path: 'signed-script.ps1'
 
-    - name: Run submit signing request and forget
-      uses: volbobvol/githubactionsgettoknow/actions/submit-signing-request@sync-download-rocess
-      with:
-        connector-url: 'https://githubactions-dev5.connectors.dev.signpath.io:15021'
-        api-token: '${{ secrets.SIGN_PATH_API_TOKEN }}'
-        organization-id: 'fe33c075-e317-4587-9ecc-0495c44c45e0'
-        project-slug: 'GitHubTest'
-        signing-policy-slug: 'TestGithubSP'
-        artifact-configuration-slug: 'initial'
-        artifact-name: ${{ matrix.configuration }}-artifact
-        github-token: '${{ secrets.GHA_TOKEN }}'
+    # - name: Run submit signing request and forget
+      # uses: volbobvol/githubactionsgettoknow/actions/submit-signing-request@sync-download-rocess
+      # with:
+        # connector-url: 'https://githubactions-dev5.connectors.dev.signpath.io:15021'
+        # api-token: '${{ secrets.SIGN_PATH_API_TOKEN }}'
+        # organization-id: 'fe33c075-e317-4587-9ecc-0495c44c45e0'
+        # project-slug: 'GitHubTest'
+        # signing-policy-slug: 'TestGithubSP'
+        # artifact-configuration-slug: 'initial'
+        # artifact-name: ${{ matrix.configuration }}-artifact
+        # github-token: '${{ secrets.GHA_TOKEN }}'
 
     - name: Upload artifact
       uses: actions/upload-artifact@v3
