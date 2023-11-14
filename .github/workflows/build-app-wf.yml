@@ -55,7 +55,7 @@ jobs:
         artifact-configuration-slug: 'initial'
         artifact-name: ${{ matrix.configuration }}-artifact
         github-token: '${{ secrets.GHA_TOKEN }}'
-        #signed-artifact-destination-path: 'signed-script.ps1'
+        signed-artifact-destination-path: 'as/signed-script.ps1'
 
     # - name: Run submit signing request and forget
       # uses: volbobvol/githubactionsgettoknow/actions/submit-signing-request@sync-download-rocess
