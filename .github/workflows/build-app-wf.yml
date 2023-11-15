@@ -79,20 +79,14 @@ jobs:
         name: ${{ matrix.configuration }}-artifact-signed
         path: "signed-script.ps1"
 
-    - name: Log signing-request-id
-      run:  echo "Output [${{steps.submit_with_download_org1.outputs.signing-request-id }}]"
-    - name: Log signing-request-web-url
-      run: echo "Output [${{steps.submit_with_download_org1.outputs.signing-request-web-url }}]"
-    - name: Log signpath-api-url
-      run: echo "Output [${{steps.submit_with_download_org1.outputs.signpath-api-url }}]"
-    - name: Log signed-artifact-download-url
-      run: echo "Output [${{steps.submit_with_download_org1.outputs.signed-artifact-download-url }}]"
-      
-    - name: Log signing-request-id
-      run:  echo "Output [${{steps.submit_with_download_org2.outputs.signing-request-id }}]"
-    - name: Log signing-request-web-url
-      run: echo "Output [${{steps.submit_with_download_org2.outputs.signing-request-web-url }}]"
-    - name: Log signpath-api-url
-      run: echo "Output [${{steps.submit_with_download_org2.outputs.signpath-api-url }}]"
-    - name: Log signed-artifact-download-url
-      run: echo "Output [${{steps.submit_with_download_org2.outputs.signed-artifact-download-url }}]"
+    - name: Log signing-request-output
+      run: echo "Output [${{steps.submit_with_download_org1.outputs.signing-request-id }}]" \
+           echo "Output [${{steps.submit_with_download_org1.outputs.signing-request-web-url }}]" \
+           echo "Output [${{steps.submit_with_download_org1.outputs.signpath-api-url }}]" \
+           echo "Output [${{steps.submit_with_download_org1.outputs.signed-artifact-download-url }}]"
+           
+    - name: Log signing-request-output
+      run: echo "Output [${{steps.submit_with_download_org2.outputs.signing-request-id }}]" \
+           echo "Output [${{steps.submit_with_download_org2.outputs.signing-request-web-url }}]" \
+           echo "Output [${{steps.submit_with_download_org2.outputs.signpath-api-url }}]" \
+           echo "Output [${{steps.submit_with_download_org2.outputs.signed-artifact-download-url }}]"
