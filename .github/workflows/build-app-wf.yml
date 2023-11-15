@@ -53,7 +53,7 @@ jobs:
         artifact-configuration-slug: 'initial'
         artifact-name: ${{ matrix.configuration }}-artifact
         github-token: '${{ secrets.GHA_TOKEN }}'
-        #signed-artifact-destination-path: 'as/signed-script.ps1'
+        signed-artifact-destination-path: 'org1/signed-script.ps1'
         
     - name: Run submit signing request for FQA ORG2
       id: "submit_with_download_org2"
@@ -67,7 +67,7 @@ jobs:
         artifact-configuration-slug: 'initial'
         artifact-name: ${{ matrix.configuration }}-artifact
         github-token: '${{ secrets.GHA_TOKEN }}'
-        #signed-artifact-destination-path: 'as/signed-script.ps1'
+        signed-artifact-destination-path: 'org2/signed-script.ps1'
 
     - name: Upload artifact
       uses: actions/upload-artifact@v3
