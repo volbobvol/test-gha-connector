@@ -38,8 +38,14 @@ jobs:
       with:
         url: https://githubactions.connectors.fqa.test.signpath.io:15021/healthz
         method: GET    
-    - name: print ping
-      run: echo "Output [${{ steps.ping_task.outputs }}]"
+    
+    - name: check if SignPath is accessible
+      id: ping_task
+      uses: satak/webrequest-action@master
+      with:
+        url: https://fqa.test.signpath.io/api/healthz
+        method: GET    
+    
 
     - name: Run submit signing request for FQA ORG1
       id: "submit_with_download_org1"
