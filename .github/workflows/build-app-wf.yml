@@ -73,20 +73,29 @@ jobs:
         github-token: '${{ secrets.GHA_TOKEN }}'
         signed-artifact-destination-path: 'org2/signed-script.ps1'
 
-    - name: Upload artifact
+
+    - name: Upload artifact Org1
       uses: actions/upload-artifact@v3
       with: 
-        name: ${{ matrix.configuration }}-artifact-signed
-        path: "signed-script.ps1"
+        name: Org1SignedArtifact
+        path: "org1/signed-script.ps1"
 
-    - name: Log signing-request-output
-      run: echo "Output [${{steps.submit_with_download_org1.outputs.signing-request-id }}]" \
-           echo "Output [${{steps.submit_with_download_org1.outputs.signing-request-web-url }}]" \
-           echo "Output [${{steps.submit_with_download_org1.outputs.signpath-api-url }}]" \
-           echo "Output [${{steps.submit_with_download_org1.outputs.signed-artifact-download-url }}]"
+    - name: Upload artifact Org2
+      uses: actions/upload-artifact@v3
+      with: 
+        name: Org2SignedArtifact
+        path: "org2/signed-script.ps1"
+
+    - name: Log signing-request-output for Org1
+      run: |
+           echo "signing-request-id [${{steps.submit_with_download_org1.outputs.signing-request-id }}]"
+           echo "signing-request-web-url [${{steps.submit_with_download_org1.outputs.signing-request-web-url }}]"
+           echo "signpath-api-url [${{steps.submit_with_download_org1.outputs.signpath-api-url }}]"
+           echo "signed-artifact-download-url [${{steps.submit_with_download_org1.outputs.signed-artifact-download-url }}]"
            
-    - name: Log signing-request-output
-      run: echo "Output [${{steps.submit_with_download_org2.outputs.signing-request-id }}]" \
-           echo "Output [${{steps.submit_with_download_org2.outputs.signing-request-web-url }}]" \
-           echo "Output [${{steps.submit_with_download_org2.outputs.signpath-api-url }}]" \
-           echo "Output [${{steps.submit_with_download_org2.outputs.signed-artifact-download-url }}]"
+    - name: Log signing-request-output for Org2
+      run: |
+           echo "signing-request-id [${{steps.submit_with_download_org2.outputs.signing-request-id }}]"
+           echo "signing-request-web-url [${{steps.submit_with_download_org2.outputs.signing-request-web-url }}]"
+           echo "signpath-api-url [${{steps.submit_with_download_org2.outputs.signpath-api-url }}]"
+           echo "signed-artifact-download-url [${{steps.submit_with_download_org2.outputs.signed-artifact-download-url }}]"
