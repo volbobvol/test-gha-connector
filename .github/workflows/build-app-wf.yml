@@ -8,43 +8,31 @@ jobs:
 
   build:
 
-    strategy:
-      matrix:
-        configuration: [Debug]
-
     runs-on: windows-latest
 
     steps:
-    - name: Log Version
+    - name: Log workflow version
       run: "echo \"Version 1\""
 
-    - name: Create folder
-      run: mkdir data
-
-    - name: Create artifact file
-      run: "echo \"Build: ${{ matrix.configuration }}. Created on: \" > data/script.ps1"
-    - name: Append create date
-      run: "echo (Get-Date -Format 'yyyy-MM-dd HH:mm:ss') >> data/script.ps1"
-      
-    - name: Upload artifact
+    - name: Generate an artifact file with a time of creation insight
+      run: |
+        echo \"Created on: \" > script.ps1
+        echo (Get-Date -Format 'yyyy-MM-dd HH:mm:ss') >> script.ps1
+    - name: Upload the artifcat file
       uses: actions/upload-artifact@v3
       with: 
-        name: ${{ matrix.configuration }}-artifact
-        path: "data/"
-        
+        name: original-artifact
+        path: "script.ps1"
     - name: check if connector is accessible
       uses: satak/webrequest-action@master
       with:
         url: https://githubactions.connectors.fqa.test.signpath.io:15021/healthz
         method: GET    
-    
     - name: check if SignPath is accessible
       uses: satak/webrequest-action@master
       with:
         url: https://fqa.test.signpath.io/api/healthz
-        method: GET    
-    
-
+        method: GET
     - name: Run submit signing request for FQA ORG1
       id: "submit_with_download_org1"
       uses: SignPath/github-actions/actions/submit-signing-request@main
@@ -53,12 +41,12 @@ jobs:
         api-token: '${{ secrets.SIGN_PATH_API_TOKEN_FQA_ORG1 }}'
         organization-id: '54145c58-966f-4f56-83c3-4fda3f27da37'
         project-slug: 'GithubTestOrg1'
+        # this SigningPolicy has auto-approve enabled, so you don't need to approve the signing request
         signing-policy-slug: 'GithubTestSp'
         artifact-configuration-slug: 'initial'
-        artifact-name: ${{ matrix.configuration }}-artifact
+        artifact-name: original-artifact
         github-token: '${{ secrets.GHA_TOKEN }}'
         signed-artifact-destination-path: 'org1/signed-script.ps1'
-        
     - name: Run submit signing request for FQA ORG2
       id: "submit_with_download_org2"
       uses: SignPath/github-actions/actions/submit-signing-request@main
@@ -67,33 +55,34 @@ jobs:
         api-token: '${{ secrets.SIGN_PATH_API_TOKEN_FQA_ORG2 }}'
         organization-id: 'c10efa1c-f5bd-47ad-804b-3f289a39db6c'
         project-slug: 'GithubTestOrg2'
+        # this SigningPolicy has auto-approve enabled, so you don't need to approve the signing request
         signing-policy-slug: 'GithubTestSp'
         artifact-configuration-slug: 'initial'
-        artifact-name: ${{ matrix.configuration }}-artifact
+        artifact-name: original-artifact
         github-token: '${{ secrets.GHA_TOKEN }}'
         signed-artifact-destination-path: 'org2/signed-script.ps1'
 
 
-    - name: Upload artifact Org1
+    - name: Upload the artifact signed by Org1
       uses: actions/upload-artifact@v3
       with: 
         name: Org1SignedArtifact
         path: "org1/signed-script.ps1"
 
-    - name: Upload artifact Org2
+    - name: Upload the artifact signed by Org2
       uses: actions/upload-artifact@v3
       with: 
         name: Org2SignedArtifact
         path: "org2/signed-script.ps1"
 
-    - name: Log signing-request-output for Org1
+    - name: Log submit-signing-request task output for Org1
       run: |
            echo "signing-request-id [${{steps.submit_with_download_org1.outputs.signing-request-id }}]"
            echo "signing-request-web-url [${{steps.submit_with_download_org1.outputs.signing-request-web-url }}]"
            echo "signpath-api-url [${{steps.submit_with_download_org1.outputs.signpath-api-url }}]"
            echo "signed-artifact-download-url [${{steps.submit_with_download_org1.outputs.signed-artifact-download-url }}]"
            
-    - name: Log signing-request-output for Org2
+    - name: Log submit-signing-request task output for Org2
       run: |
            echo "signing-request-id [${{steps.submit_with_download_org2.outputs.signing-request-id }}]"
            echo "signing-request-web-url [${{steps.submit_with_download_org2.outputs.signing-request-web-url }}]"
