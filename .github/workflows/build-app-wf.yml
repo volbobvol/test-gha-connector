@@ -22,7 +22,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with: 
         name: original-artifact
-        path: "script.ps1"
+        path: "hello-world.exe"
     - name: check if connector is accessible
       uses: satak/webrequest-action@master
       with:
