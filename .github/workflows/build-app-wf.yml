@@ -14,7 +14,7 @@ jobs:
     - name: Log workflow version
       run: "echo \"Version 1\""
 
-    - name: Generate an artifact file with a time of creation insight
+    - name: Generate an artifact file with a time of creation
       run: |
         echo \"Created on: \" > script.ps1
         echo (Get-Date -Format 'yyyy-MM-dd HH:mm:ss') >> script.ps1
