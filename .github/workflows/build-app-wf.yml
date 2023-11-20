@@ -14,10 +14,9 @@ jobs:
     - name: Log workflow version
       run: "echo \"Version 1\""
 
-    - name: Generate an artifact file with a time of creation
-      run: |
-        echo \"Created on: \" > script.ps1
-        echo (Get-Date -Format 'yyyy-MM-dd HH:mm:ss') >> script.ps1
+    - name: checkout
+      uses: actions/checkout@v3
+      
     - name: Upload the artifcat file
       uses: actions/upload-artifact@v3
       with: 
