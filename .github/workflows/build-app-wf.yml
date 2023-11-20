@@ -22,7 +22,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with: 
         name: original-artifact
-        path: "hello-world.exe"
+        path: "big.exe"
     - name: check if connector is accessible
       uses: satak/webrequest-action@master
       with:
@@ -47,34 +47,34 @@ jobs:
         artifact-configuration-slug: 'initial'
         artifact-name: original-artifact
         github-token: '${{ secrets.GHA_TOKEN }}'
-        signed-artifact-destination-path: 'org1/signed-script.ps1'
-    - name: Run submit signing request for FQA ORG2
-      id: "submit_with_download_org2"
-      uses: SignPath/github-actions/actions/submit-signing-request@main
-      with:
-        connector-url: 'https://githubactions.connectors.fqa.test.signpath.io:15021/'
-        api-token: '${{ secrets.SIGN_PATH_API_TOKEN_FQA_ORG2 }}'
-        organization-id: 'c10efa1c-f5bd-47ad-804b-3f289a39db6c'
-        project-slug: 'GithubTestOrg2'
-        # this SigningPolicy has auto-approve enabled, so you don't need to approve the signing request
-        signing-policy-slug: 'GithubTestSp'
-        artifact-configuration-slug: 'initial'
-        artifact-name: original-artifact
-        github-token: '${{ secrets.GHA_TOKEN }}'
-        signed-artifact-destination-path: 'org2/signed-script.ps1'
+        signed-artifact-destination-path: 'org1/big-signed.exe'
+    # - name: Run submit signing request for FQA ORG2
+      # id: "submit_with_download_org2"
+      # uses: SignPath/github-actions/actions/submit-signing-request@main
+      # with:
+        # connector-url: 'https://githubactions.connectors.fqa.test.signpath.io:15021/'
+        # api-token: '${{ secrets.SIGN_PATH_API_TOKEN_FQA_ORG2 }}'
+        # organization-id: 'c10efa1c-f5bd-47ad-804b-3f289a39db6c'
+        # project-slug: 'GithubTestOrg2'
+        # # this SigningPolicy has auto-approve enabled, so you don't need to approve the signing request
+        # signing-policy-slug: 'GithubTestSp'
+        # artifact-configuration-slug: 'initial'
+        # artifact-name: original-artifact
+        # github-token: '${{ secrets.GHA_TOKEN }}'
+        # signed-artifact-destination-path: 'org2/signed-script.ps1'
 
 
     - name: Upload the artifact signed by Org1
       uses: actions/upload-artifact@v3
       with: 
         name: Org1SignedArtifact
-        path: "org1/signed-script.ps1"
+        path: "org1/big-signed.exe"
 
-    - name: Upload the artifact signed by Org2
-      uses: actions/upload-artifact@v3
-      with: 
-        name: Org2SignedArtifact
-        path: "org2/signed-script.ps1"
+    # - name: Upload the artifact signed by Org2
+      # uses: actions/upload-artifact@v3
+      # with: 
+        # name: Org2SignedArtifact
+        # path: "org2/signed-script.ps1"
 
     - name: Log submit-signing-request task output for Org1
       run: |
@@ -83,9 +83,9 @@ jobs:
            echo "signpath-api-url [${{steps.submit_with_download_org1.outputs.signpath-api-url }}]"
            echo "signed-artifact-download-url [${{steps.submit_with_download_org1.outputs.signed-artifact-download-url }}]"
            
-    - name: Log submit-signing-request task output for Org2
-      run: |
-           echo "signing-request-id [${{steps.submit_with_download_org2.outputs.signing-request-id }}]"
-           echo "signing-request-web-url [${{steps.submit_with_download_org2.outputs.signing-request-web-url }}]"
-           echo "signpath-api-url [${{steps.submit_with_download_org2.outputs.signpath-api-url }}]"
-           echo "signed-artifact-download-url [${{steps.submit_with_download_org2.outputs.signed-artifact-download-url }}]"
+    # - name: Log submit-signing-request task output for Org2
+      # run: |
+           # echo "signing-request-id [${{steps.submit_with_download_org2.outputs.signing-request-id }}]"
+           # echo "signing-request-web-url [${{steps.submit_with_download_org2.outputs.signing-request-web-url }}]"
+           # echo "signpath-api-url [${{steps.submit_with_download_org2.outputs.signpath-api-url }}]"
+           # echo "signed-artifact-download-url [${{steps.submit_with_download_org2.outputs.signed-artifact-download-url }}]"
