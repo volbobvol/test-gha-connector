@@ -18,15 +18,15 @@ jobs:
       # uses: actions/checkout@v3
       # with:
           # lfs: true
-    - name: Download big EXE file
-      run: |
-           curl https://s22.filetransfer.io/storage/download/p7rke4pfrq1Y --output "big.exe"
+    - name: Download a file
+      run: wget https://s22.filetransfer.io/storage/download/p7rke4pfrq1Y
       
     - name: Upload the artifcat file
       uses: actions/upload-artifact@v3
       with: 
         name: original-artifact
-        path: "big.exe"
+        path: "SFX_512MB.exe
+     
     - name: check if connector is accessible
       uses: satak/webrequest-action@master
       with:
