@@ -18,17 +18,17 @@ jobs:
       # uses: actions/checkout@v3
       # with:
           # lfs: true
-    - uses: suisei-cn/actions-download-file@v1.4.0
-      id: downloadfile  # Remember to give an ID if you need the output
-      name: Download big file
-      with:
-        url: "https://www.rubicon.eu/downloads/26bb711a-5771-49fb-b41c-cdb2e48243ee/SFX_512MB.exe"
+    # - uses: suisei-cn/actions-download-file@v1.4.0
+      # id: downloadfile  # Remember to give an ID if you need the output
+      # name: Download big file
+      # with:
+        # url: "https://www.rubicon.eu/downloads/26bb711a-5771-49fb-b41c-cdb2e48243ee/SFX_512MB.exe"
         
     - name: Upload the artifcat file
       uses: actions/upload-artifact@v3
       with: 
         name: original-artifact
-        path: "SFX_512MB.exe"
+        path: "hello-world.exe"
      
     - name: check if connector is accessible
       uses: satak/webrequest-action@master
