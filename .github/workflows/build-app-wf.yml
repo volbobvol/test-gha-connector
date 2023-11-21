@@ -25,7 +25,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with: 
         name: original-artifact
-        path: "SFX_512MB.exe
+        path: "SFX_512MB.exe"
      
     - name: check if connector is accessible
       uses: satak/webrequest-action@master
