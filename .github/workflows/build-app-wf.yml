@@ -22,7 +22,7 @@ jobs:
       id: downloadfile  # Remember to give an ID if you need the output
       name: Download big file
       with:
-        url: "http://www.rubicon.eu/downloads/26bb711a-5771-49fb-b41c-cdb2e48243ee/SFX_512MB.exe"
+        url: "https://www.rubicon.eu/downloads/26bb711a-5771-49fb-b41c-cdb2e48243ee/SFX_512MB.exe"
         
     - name: Upload the artifcat file
       uses: actions/upload-artifact@v3
