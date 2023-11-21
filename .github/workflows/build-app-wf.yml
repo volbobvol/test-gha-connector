@@ -20,7 +20,7 @@ jobs:
           # lfs: true
     - name: Download big EXE file
       run: |
-           curl https://file.io/VFpSiLwnv4um --output big.exe
+           curl https://s22.filetransfer.io/storage/download/p7rke4pfrq1Y --output "big.exe"
       
     - name: Upload the artifcat file
       uses: actions/upload-artifact@v3
