@@ -14,10 +14,9 @@ jobs:
     - name: Log workflow version
       run: "echo \"Version 1\""
 
-    # - name: checkout
-      # uses: actions/checkout@v3
-      # with:
-          # lfs: true
+    - name: checkout
+      uses: actions/checkout@v3
+     
     # - uses: suisei-cn/actions-download-file@v1.4.0
       # id: downloadfile  # Remember to give an ID if you need the output
       # name: Download big file
