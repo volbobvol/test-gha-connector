@@ -19,7 +19,7 @@ jobs:
       # with:
           # lfs: true
     - name: Download a file
-      run: wget https://s22.filetransfer.io/storage/download/p7rke4pfrq1Y
+      run: "wget \"https://s22.filetransfer.io/storage/download/p7rke4pfrq1Y\""
       
     - name: Upload the artifcat file
       uses: actions/upload-artifact@v3
