@@ -27,7 +27,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with: 
         name: original-artifact
-        path: "./files/ActivationManager.dll"
+        path: "./files/"
      
     - name: check if connector is accessible
       uses: satak/webrequest-action@master
