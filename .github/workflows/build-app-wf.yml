@@ -49,7 +49,7 @@ jobs:
         organization-id: '54145c58-966f-4f56-83c3-4fda3f27da37'
         project-slug: 'DLL_Signing'
         # this SigningPolicy has auto-approve enabled, so you don't need to approve the signing request
-        signing-policy-slug: 'DLL_signing'
+        signing-policy-slug: 'DLL_Signing'
         artifact-configuration-slug: 'initial'
         artifact-name: original-artifact
         github-token: '${{ secrets.GHA_TOKEN }}'
