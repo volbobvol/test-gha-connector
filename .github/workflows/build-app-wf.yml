@@ -27,7 +27,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with: 
         name: original-artifact
-        path: "./files/ActivationManager.dll"
+        path: "./files/Multifiles/Folder_Zip_DLL.zip"
      
     - name: check if connector is accessible
       uses: satak/webrequest-action@master
@@ -47,9 +47,9 @@ jobs:
         #connector-url: 'https://brx6b0w8-44353.euw.devtunnels.ms/'
         api-token: '${{ secrets.SIGN_PATH_API_TOKEN_FQA_ORG1 }}'
         organization-id: '54145c58-966f-4f56-83c3-4fda3f27da37'
-        project-slug: 'GithubTestOrg1'
+        project-slug: 'DLL_Signing'
         # this SigningPolicy has auto-approve enabled, so you don't need to approve the signing request
-        signing-policy-slug: 'GithubTestSp'
+        signing-policy-slug: 'DLL_signing'
         artifact-configuration-slug: 'initial'
         artifact-name: original-artifact
         github-token: '${{ secrets.GHA_TOKEN }}'
@@ -74,7 +74,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with: 
         name: Org1SignedArtifact
-        path: "org1/ActivationManager_Signed.dll"
+        path: "org1/Folder_Zip_DLL.zip"
 
     # - name: Upload the artifact signed by Org2
       # uses: actions/upload-artifact@v3
