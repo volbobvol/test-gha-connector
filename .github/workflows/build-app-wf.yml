@@ -27,7 +27,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with: 
         name: original-artifact
-        path: "./files/hello-world.exe"
+        path: "./files/ActivationManager.dll"
      
     - name: check if connector is accessible
       uses: satak/webrequest-action@master
@@ -53,7 +53,7 @@ jobs:
         artifact-configuration-slug: 'initial'
         artifact-name: original-artifact
         github-token: '${{ secrets.GHA_TOKEN }}'
-        signed-artifact-destination-path: 'org1/big-signed.exe'
+        signed-artifact-destination-path: 'org1/ActivationManager_Signed.dll'
     # - name: Run submit signing request for FQA ORG2
       # id: "submit_with_download_org2"
       # uses: SignPath/github-actions/actions/submit-signing-request@main
@@ -74,7 +74,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with: 
         name: Org1SignedArtifact
-        path: "org1/big-signed.exe"
+        path: "org1/ActivationManager_Signed.dll"
 
     # - name: Upload the artifact signed by Org2
       # uses: actions/upload-artifact@v3
