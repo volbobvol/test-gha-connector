@@ -47,10 +47,10 @@ jobs:
         #connector-url: 'https://brx6b0w8-44353.euw.devtunnels.ms/'
         api-token: '${{ secrets.SIGN_PATH_API_TOKEN_FQA_ORG1 }}'
         organization-id: '54145c58-966f-4f56-83c3-4fda3f27da37'
-        project-slug: 'DLL_Signing'
+        project-slug: 'GithubTestOrg1'
         # this SigningPolicy has auto-approve enabled, so you don't need to approve the signing request
-        signing-policy-slug: 'DLL_Signing'
-        artifact-configuration-slug: 'initial'
+        signing-policy-slug: 'GithubTestSp'
+        artifact-configuration-slug: 'archive'
         artifact-name: original-artifact
         github-token: '${{ secrets.GHA_TOKEN }}'
         signed-artifact-destination-path: 'org1/ActivationManager_Signed.dll'
