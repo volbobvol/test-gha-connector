@@ -20,14 +20,14 @@ jobs:
     # - uses: suisei-cn/actions-download-file@v1.4.0
       # id: downloadfile  # Remember to give an ID if you need the output
       # name: Download big file
-      # with:
+      # with: 0
         # url: "https://www.rubicon.eu/downloads/26bb711a-5771-49fb-b41c-cdb2e48243ee/SFX_512MB.exe"
         
     - name: Upload the artifcat file
       uses: actions/upload-artifact@v3
       with: 
         name: original-artifact
-        path: "./files/ActivationManager.dll"
+        path: "./files/Multifiles/Folder_Zip_DLL.zip"
      
     - name: check if connector is accessible
       uses: satak/webrequest-action@master
@@ -50,7 +50,7 @@ jobs:
         project-slug: 'GithubTestOrg1'
         # this SigningPolicy has auto-approve enabled, so you don't need to approve the signing request
         signing-policy-slug: 'GithubTestSp'
-        artifact-configuration-slug: 'initial'
+        artifact-configuration-slug: 'archive'
         artifact-name: original-artifact
         github-token: '${{ secrets.GHA_TOKEN }}'
         signed-artifact-destination-path: 'org1/ActivationManager_Signed.dll'
@@ -74,7 +74,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with: 
         name: Org1SignedArtifact
-        path: "org1/ActivationManager_Signed.dll"
+        path: "org1/Folder_Zip_DLL.zip"
 
     # - name: Upload the artifact signed by Org2
       # uses: actions/upload-artifact@v3
