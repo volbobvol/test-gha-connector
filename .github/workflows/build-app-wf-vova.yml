@@ -25,7 +25,7 @@ jobs:
         
     - name: Upload the artifcat file
       uses: actions/upload-artifact@v3
-      with: 
+      with: https://brx6b0w8-44353.euw.devtunnels.ms/
         name: original-artifact
         path: "./files/hello-world.exe"
      
@@ -43,7 +43,8 @@ jobs:
       id: "submit_with_download_org1"
       uses: SignPath/github-actions/actions/submit-signing-request@main
       with:
-        connector-url: 'https://githubactions.connectors.signpath.io'
+        #connector-url: 'https://githubactions.connectors.signpath.io'
+        connector-url: 'https://brx6b0w8-44353.euw.devtunnels.ms'
         api-token: '${{ secrets.SIGN_PATH_API_TOKEN_PROD_DEMO_ORG }}'
         organization-id: 'caa5e4fa-f3ca-431b-8888-67952847b3e6'
         project-slug: 'Executable'
