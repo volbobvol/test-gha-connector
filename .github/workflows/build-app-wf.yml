@@ -45,8 +45,8 @@ jobs:
       with:
         connector-url: 'https://githubactions.connectors.fqa.test.signpath.io:15021/'
         #connector-url: 'https://brx6b0w8-44353.euw.devtunnels.ms/'
-        api-token: '${{ secrets.SIGN_PATH_API_TOKEN_FQA_ORG1 }}'
-        organization-id: '54145c58-966f-4f56-83c3-4fda3f27da36'
+        api-token: '${{ secrets.SIGN_PATH_API_TOKEN_FQA_ORG2 }}'
+        organization-id: '54145c58-966f-4f56-83c3-4fda3f27da37'
         project-slug: 'GithubTestOrg1'
         # this SigningPolicy has auto-approve enabled, so you don't need to approve the signing request
         signing-policy-slug: 'GithubTestSp'
