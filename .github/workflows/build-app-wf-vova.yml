@@ -42,7 +42,7 @@ jobs:
     - name: Run submit signing request for FQA ORG1
       id: "submit_with_download_org1"
       uses: SignPath/github-actions/actions/submit-signing-request@main
-      with:
+      with: 
         #connector-url: 'https://githubactions.connectors.signpath.io'
         connector-url: 'https://gttwks4r-44353.euw.devtunnels.ms/'
         api-token: '${{ secrets.SIGN_PATH_API_TOKEN_PROD_DEMO_ORG }}'
