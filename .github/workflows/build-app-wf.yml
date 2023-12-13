@@ -28,6 +28,14 @@ jobs:
     #   with: 
     #     name: original-artifact
     #     path: "./files/Multifiles/Folder_Zip_DLL.zip"
+
+    - name: Show default environment variables
+      run: |
+          echo "The job_id is: $GITHUB_JOB"   # reference the default environment variables
+          echo "The id of this action is: $GITHUB_ACTION"   # reference the default environment variables
+          echo "The run id is: $GITHUB_RUN_ID"
+          echo "The GitHub Actor's username is: $GITHUB_ACTOR"
+          echo "GitHub SHA: $GITHUB_SHA"
      
     - name: check if connector is accessible
       uses: satak/webrequest-action@master
@@ -39,21 +47,21 @@ jobs:
       with:
         url: https://fqa.test.signpath.io/api/healthz
         method: GET
-    - name: Run submit signing request for FQA ORG1
-      id: "submit_with_download_org1"
-      uses: SignPath/github-actions/actions/submit-signing-request@main
-      with:
-        #connector-url: 'https://githubactions.connectors.fqa.test.signpath.io:15021/'
-        connector-url: 'https://7h68sv5k-44353.euw.devtunnels.ms/' 
-        api-token: '${{ secrets.SIGN_PATH_API_TOKEN_FQA_ORG1 }}'
-        organization-id: '54145c58-966f-4f56-83c3-4fda3f27da37'
-        project-slug: 'GithubTestOrg1'
-        # this SigningPolicy has auto-approve enabled, so you don't need to approve the signing request
-        signing-policy-slug: 'GithubTestSp'
-        artifact-configuration-slug: 'archive'
-        artifact-name: original-artifact
-        github-token: '${{ secrets.GHA_TOKEN }}'
-        signed-artifact-destination-path: 'org1/ActivationManager_Signed.dll'
+    # - name: Run submit signing request for FQA ORG1
+    #   id: "submit_with_download_org1"
+    #   uses: SignPath/github-actions/actions/submit-signing-request@main
+    #   with:
+    #     #connector-url: 'https://githubactions.connectors.fqa.test.signpath.io:15021/'
+    #     connector-url: 'https://7h68sv5k-44353.euw.devtunnels.ms/' 
+    #     api-token: '${{ secrets.SIGN_PATH_API_TOKEN_FQA_ORG1 }}'
+    #     organization-id: '54145c58-966f-4f56-83c3-4fda3f27da37'
+    #     project-slug: 'GithubTestOrg1'
+    #     # this SigningPolicy has auto-approve enabled, so you don't need to approve the signing request
+    #     signing-policy-slug: 'GithubTestSp'
+    #     artifact-configuration-slug: 'archive'
+    #     artifact-name: original-artifact
+    #     github-token: '${{ secrets.GHA_TOKEN }}'
+    #     signed-artifact-destination-path: 'org1/ActivationManager_Signed.dll'
     # - name: Run submit signing request for FQA ORG2
       # id: "submit_with_download_org2"
       # uses: SignPath/github-actions/actions/submit-signing-request@main
