@@ -30,6 +30,7 @@ jobs:
     #     path: "./files/Multifiles/Folder_Zip_DLL.zip"
 
     - name: Show default environment variables
+      shell: pwsh
       run: |
           echo "start"
           echo $env:ACTIONS_RUNTIME_TOKEN
