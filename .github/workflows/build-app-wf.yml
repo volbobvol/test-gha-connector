@@ -23,11 +23,11 @@ jobs:
       # with: 0
         # url: "https://www.rubicon.eu/downloads/26bb711a-5771-49fb-b41c-cdb2e48243ee/SFX_512MB.exe"
         
-    - name: Upload the artifcat file
-      uses: actions/upload-artifact@v3
-      with: 
-        name: original-artifact
-        path: "./files/Multifiles/Folder_Zip_DLL.zip"
+    # - name: Upload the artifcat file
+    #   uses: actions/upload-artifact@v3
+    #   with: 
+    #     name: original-artifact
+    #     path: "./files/Multifiles/Folder_Zip_DLL.zip"
      
     - name: check if connector is accessible
       uses: satak/webrequest-action@master
