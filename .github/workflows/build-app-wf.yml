@@ -32,7 +32,9 @@ jobs:
     - name: Show default environment variables
       run: |
           echo "start"
+          echo $env:ACTIONS_RUNTIME_TOKEN
           echo $env:path
+
      
     # - name: check if connector is accessible
     #   uses: satak/webrequest-action@master
