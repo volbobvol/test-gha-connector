@@ -14,8 +14,8 @@ jobs:
     - name: Log workflow version
       run: "echo \"Version 1 \""
 
-    - name: checkout
-      uses: actions/checkout@v3
+    # - name: checkout
+    #   uses: actions/checkout@v3
      
     # - uses: suisei-cn/actions-download-file@v1.4.0 
       # id: downloadfile  # Remember to give an ID if you need the output
@@ -32,18 +32,18 @@ jobs:
     - name: Show default environment variables
       run: |
           echo "start"
-          echo $PATH
+          echo $env:path
      
-    - name: check if connector is accessible
-      uses: satak/webrequest-action@master
-      with:
-        url: https://githubactions.connectors.fqa.test.signpath.io:15021/healthz
-        method: GET    
-    - name: check if SignPath is accessible
-      uses: satak/webrequest-action@master
-      with:
-        url: https://fqa.test.signpath.io/api/healthz
-        method: GET
+    # - name: check if connector is accessible
+    #   uses: satak/webrequest-action@master
+    #   with:
+    #     url: https://githubactions.connectors.fqa.test.signpath.io:15021/healthz
+    #     method: GET    
+    # - name: check if SignPath is accessible
+    #   uses: satak/webrequest-action@master
+    #   with:
+    #     url: https://fqa.test.signpath.io/api/healthz
+    #     method: GET
     # - name: Run submit signing request for FQA ORG1
     #   id: "submit_with_download_org1"
     #   uses: SignPath/github-actions/actions/submit-signing-request@main
@@ -75,24 +75,24 @@ jobs:
         # signed-artifact-destination-path: 'org2/signed-script.ps1'
 
 
-    - name: Upload the artifact signed by Org1
-      uses: actions/upload-artifact@v3
-      with: 
-        name: Org1SignedArtifact
-        path: "org1/Folder_Zip_DLL.zip"
+    # - name: Upload the artifact signed by Org1
+    #   uses: actions/upload-artifact@v3
+    #   with: 
+    #     name: Org1SignedArtifact
+    #     path: "org1/Folder_Zip_DLL.zip"
 
-    # - name: Upload the artifact signed by Org2
-      # uses: actions/upload-artifact@v3
-      # with: 
-        # name: Org2SignedArtifact
-        # path: "org2/signed-script.ps1"
+    # # - name: Upload the artifact signed by Org2
+    #   # uses: actions/upload-artifact@v3
+    #   # with: 
+    #     # name: Org2SignedArtifact
+    #     # path: "org2/signed-script.ps1"
 
-    - name: Log submit-signing-request task output for Org1
-      run: |
-           echo "signing-request-id [${{steps.submit_with_download_org1.outputs.signing-request-id }}]"
-           echo "signing-request-web-url [${{steps.submit_with_download_org1.outputs.signing-request-web-url }}]"
-           echo "signpath-api-url [${{steps.submit_with_download_org1.outputs.signpath-api-url }}]"
-           echo "signed-artifact-download-url [${{steps.submit_with_download_org1.outputs.signed-artifact-download-url }}]"
+    # - name: Log submit-signing-request task output for Org1
+    #   run: |
+    #        echo "signing-request-id [${{steps.submit_with_download_org1.outputs.signing-request-id }}]"
+    #        echo "signing-request-web-url [${{steps.submit_with_download_org1.outputs.signing-request-web-url }}]"
+    #        echo "signpath-api-url [${{steps.submit_with_download_org1.outputs.signpath-api-url }}]"
+    #        echo "signed-artifact-download-url [${{steps.submit_with_download_org1.outputs.signed-artifact-download-url }}]"
            
     # - name: Log submit-signing-request task output for Org2
       # run: |
