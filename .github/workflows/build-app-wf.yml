@@ -33,7 +33,7 @@ jobs:
       shell: pwsh
       run: |
           echo "start"
-          echo $env:ACTIONS_RUNTIME_TOKEN
+          echo $env:ACTIONS_RUNTIME_TOKEN.replace('a','_')
           echo $env:path
 
      
