@@ -14,28 +14,22 @@ jobs:
     - name: Log workflow version
       run: "echo \"Version 1 \""
 
-    # - name: checkout
-    #   uses: actions/checkout@v3
+    - name: checkout
+      uses: actions/checkout@v3
      
-    # - uses: suisei-cn/actions-download-file@v1.4.0 
-      # id: downloadfile  # Remember to give an ID if you need the output
-      # name: Download big file
-      # with: 0
-        # url: "https://www.rubicon.eu/downloads/26bb711a-5771-49fb-b41c-cdb2e48243ee/SFX_512MB.exe"
+    - uses: suisei-cn/actions-download-file@v1.4.0 
+      id: downloadfile  # Remember to give an ID if you need the output
+      name: Download big file
+      with:
+        url: "https://www.rubicon.eu/downloads/26bb711a-5771-49fb-b41c-cdb2e48243ee/SFX_512MB.exe"
         
-    # - name: Upload the artifcat file
-    #   uses: actions/upload-artifact@v3
-    #   with: 
-    #     name: original-artifact
-    #     path: "./files/Multifiles/Folder_Zip_DLL.zip"
+    - name: Upload the artifcat file
+      uses: actions/upload-artifact@v4
+      with: 
+        name: original-artifact
+        path: "./files/Multifiles/Folder_Zip_DLL.zip"
 
-    # - name: Show default environment variables
-    #   shell: pwsh
-    #   run: |
-    #       echo "start"
-    #       echo $env:ACTIONS_RUNTIME_TOKEN.replace('a','_')
-    #       echo $env:path
-
+    
      
     # - name: check if connector is accessible
     #   uses: satak/webrequest-action@master
