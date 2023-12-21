@@ -56,7 +56,8 @@ jobs:
         signing-policy-slug: 'GithubTestSp'
         artifact-configuration-slug: 'archive'
         artifact-name: original-artifact
-        github-token: '${{ secrets.GHA_TOKEN }}'
+        #github-token: '${{ secrets.GHA_TOKEN }}'
+        github-token: '${{ secrets.GITHUB_TOKEN }}'
         # signed-artifact-destination-path: 'org1/ActivationManager_Signed.dll'
 
     - name: Sleep for 30 seconds
