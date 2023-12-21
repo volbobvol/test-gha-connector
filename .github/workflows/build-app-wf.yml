@@ -11,33 +11,7 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - name: Log workflow version
-      run: "echo \"Version 1 \""
-
-    - name: Dump GitHub context
-      env:
-        GITHUB_CONTEXT: ${{ toJson(github) }}
-      run: echo "$GITHUB_CONTEXT"
-    - name: Dump job context
-      env:
-        JOB_CONTEXT: ${{ toJson(job) }}
-      run: echo "$JOB_CONTEXT"
-    - name: Dump steps context
-      env:
-        STEPS_CONTEXT: ${{ toJson(steps) }}
-      run: echo "$STEPS_CONTEXT"
-    - name: Dump runner context
-      env:
-        RUNNER_CONTEXT: ${{ toJson(runner) }}
-      run: echo "$RUNNER_CONTEXT"
-    - name: Show default environment variables
-      run: |
-        echo "The job_id is: ${{env.GITHUB_JOB}}"   # reference the default environment variables
-        echo "The id of this action is: ${{env.GITHUB_ACTION}}"   # reference the default environment variables
-        echo "The run id is: ${{GITHUB_RUN_ID}}"
-        echo "The GitHub Actor's username is: $env.GITHUB_ACTOR"
-        echo "GitHub SHA: $env.GITHUB_SHA"
-        echo "GitHub ACTIONS_RESULTS_URL: $env.ACTIONS_RESULTS_URL"
+    
     
 
     - name: checkout
@@ -48,6 +22,9 @@ jobs:
     #   name: Download big file
     #   with:
     #     url: "https://www.rubicon.eu/downloads/26bb711a-5771-49fb-b41c-cdb2e48243ee/SFX_512MB.exe"
+
+    - name: run helper action
+      uses: volbobvol/test-gha-connector/actions@main
         
     - name: Upload the artifcat file
       uses: actions/upload-artifact@v4

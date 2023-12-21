@@ -1,0 +1,4 @@
+name: 'Helper print'
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
