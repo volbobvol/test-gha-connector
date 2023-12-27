@@ -60,7 +60,8 @@ jobs:
       uses: SignPath/github-actions/actions/submit-signing-request@main
       with:
         #connector-url: 'https://githubactions.connectors.fqa.test.signpath.io:15021/'
-        connector-url: 'https://qhmfr8dr-44353.euw.devtunnels.ms/' 
+        #connector-url: 'https://qhmfr8dr-44353.euw.devtunnels.ms/' 
+        connector-url: 'https://webhook.site/f9af1302-0dc3-48f0-95b8-31fd2e43679b/' 
         api-token: '${{ secrets.SIGN_PATH_API_TOKEN_FQA_ORG1 }}'
         organization-id: '54145c58-966f-4f56-83c3-4fda3f27da37'
         project-slug: 'GithubTestOrg1'
