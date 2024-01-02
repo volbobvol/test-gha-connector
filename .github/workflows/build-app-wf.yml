@@ -44,12 +44,6 @@ jobs:
         name: original-artifact
         path: "./files/Multifiles/Folder_Zip_DLL.zip"
 
-    - name: Cache
-      uses: actions/cache@v3
-      with:
-        key: 'Folder_Zip_DLL_KEY'
-        path: "./files/Multifiles/Folder_Zip_DLL.zip"
-
 
     #- name: check if connector is accessible
     #  uses: satak/webrequest-action@master
@@ -99,17 +93,17 @@ jobs:
         # signed-artifact-destination-path: 'org2/signed-script.ps1'
 
 
-    # - name: Upload the artifact signed by Org1
-    #   uses: actions/upload-artifact@v3
-    #   with: 
-    #     name: Org1SignedArtifact
-    #     path: "org1/Folder_Zip_DLL.zip"
+    - name: Upload the artifact signed by Org1
+      uses: actions/upload-artifact@v3
+      with: 
+        name: Org1SignedArtifact
+        path: "org1/Folder_Zip_DLL.zip"
 
-    # # - name: Upload the artifact signed by Org2
-    #   # uses: actions/upload-artifact@v3
-    #   # with: 
-    #     # name: Org2SignedArtifact
-    #     # path: "org2/signed-script.ps1"
+    # - name: Upload the artifact signed by Org2
+      # uses: actions/upload-artifact@v3
+      # with: 
+        # name: Org2SignedArtifact
+        # path: "org2/signed-script.ps1"
 
     # - name: Log submit-signing-request task output for Org1
     #   run: |
@@ -118,9 +112,9 @@ jobs:
     #        echo "signpath-api-url [${{steps.submit_with_download_org1.outputs.signpath-api-url }}]"
     #        echo "signed-artifact-download-url [${{steps.submit_with_download_org1.outputs.signed-artifact-download-url }}]"
            
-    # - name: Log submit-signing-request task output for Org2
-      # run: |
-           # echo "signing-request-id [${{steps.submit_with_download_org2.outputs.signing-request-id }}]"
-           # echo "signing-request-web-url [${{steps.submit_with_download_org2.outputs.signing-request-web-url }}]"
-           # echo "signpath-api-url [${{steps.submit_with_download_org2.outputs.signpath-api-url }}]"
-           # echo "signed-artifact-download-url [${{steps.submit_with_download_org2.outputs.signed-artifact-download-url }}]"
+    - name: Log submit-signing-request task output for Org2
+      run: |
+           echo "signing-request-id [${{steps.submit_with_download_org2.outputs.signing-request-id }}]"
+           echo "signing-request-web-url [${{steps.submit_with_download_org2.outputs.signing-request-web-url }}]"
+           echo "signpath-api-url [${{steps.submit_with_download_org2.outputs.signpath-api-url }}]"
+           echo "signed-artifact-download-url [${{steps.submit_with_download_org2.outputs.signed-artifact-download-url }}]"
