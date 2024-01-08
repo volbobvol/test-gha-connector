@@ -9,8 +9,8 @@ jobs:
   build:
     permissions:
       actions: read  # get run data
-      checks: write
-      # contents: write
+      #checks: write
+      contents: read  # we don't need it for 
       # deployments: write
       # id-token: write
       # issues: write
