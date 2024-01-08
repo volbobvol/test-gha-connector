@@ -8,17 +8,17 @@ jobs:
 
   build:
     permissions:
-      actions: read
+      actions: read  # get run data
       #checks: write
       #contents: write
       #deployments: write
       #id-token: write
       #issues: write
-      #discussions: write
-      #packages: write
-      #pages: write
-      #repository-projects: write
-      #statuses: write
+      discussions: write
+      packages: write
+      pages: write
+      repository-projects: write
+      statuses: write
 
     runs-on: windows-latest
 
