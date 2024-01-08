@@ -10,7 +10,7 @@ jobs:
     permissions:
       actions: read  # get run data
       #checks: write
-      contents: read  # we don't need it for 
+      contents: read  # do checkout
       # deployments: write
       # id-token: write
       # issues: write
