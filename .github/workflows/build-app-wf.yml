@@ -11,9 +11,9 @@ jobs:
       actions: read  # get run data
       checks: write
       contents: write
-      deployments: write
-      id-token: write
-      issues: write
+      # deployments: write
+      # id-token: write
+      # issues: write
       # discussions: write
       # packages: write
       # pages: write
