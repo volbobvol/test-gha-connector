@@ -47,6 +47,7 @@ jobs:
     - name: Cache Gradle packages
       uses: actions/cache@v3
       with:
+        key: "key"
         path: |
           ~/.gradle/caches
           ~/.gradle/wrapper
