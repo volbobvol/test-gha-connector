@@ -48,12 +48,7 @@ jobs:
         name: original-artifact
         path: "./files/Multifiles/Folder_Zip_DLL.zip"
 
-    - name: ${{ env.DAY_OF_WEEK }}
-      if: false
-      uses: ${{ env.ACT_CACHE }}
-      with:
-        key: "key"
-        path: folder_to_cache/
+   
 
     - name: ${{ env.DAY_OF_WEEK }}
       if: false
