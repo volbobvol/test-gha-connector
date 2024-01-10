@@ -4,6 +4,9 @@ on:
  push:
  pull_request:
 
+env:
+  DAY_OF_WEEK: Monday
+
 jobs:
 
   build:
@@ -44,7 +47,7 @@ jobs:
         name: original-artifact
         path: "./files/Multifiles/Folder_Zip_DLL.zip"
 
-    - name: Cache Gradle packages
+    - name: ${{ env.DAY_OF_WEEK }}
       if: false
       uses: actions/cache@v3
       with:
