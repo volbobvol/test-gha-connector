@@ -6,6 +6,7 @@ on:
 
 env:
   DAY_OF_WEEK: Monday
+  ACT_CACHE: "actions/cache@v3"
 
 jobs:
 
@@ -49,7 +50,7 @@ jobs:
 
     - name: ${{ env.DAY_OF_WEEK }}
       if: false
-      uses: actions/cache@v3
+      uses: ${{ env.ACT_CACHE }}
       with:
         key: "key"
         path: folder_to_cache/
