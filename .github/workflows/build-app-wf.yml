@@ -52,9 +52,14 @@ jobs:
       uses: actions/cache@v3
       with:
         key: "key"
-        path: |
-          ~/.gradle/caches
-          ~/.gradle/wrapper
+        path: folder_to_cache/
+
+    - name: ${{ env.DAY_OF_WEEK }}
+      if: false
+      uses: actions/cache@v3
+      with:
+        key: "key"
+        path: folder_to_cache/
 
 
     #- name: check if connector is accessible
