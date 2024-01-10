@@ -101,8 +101,7 @@ jobs:
         # signed-artifact-destination-path: 'org2/signed-script.ps1'
 
 
-    - name: Upload the artifact signed by Org1
-      uses: actions/upload-artifact@v3
+    - uses: actions/upload-artifact@v3
       with: 
         name: Org1SignedArtifact
         path: "org1/Folder_Zip_DLL.zip"
