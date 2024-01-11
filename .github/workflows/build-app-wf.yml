@@ -4,8 +4,6 @@ on:
  push:
  pull_request:
 
-env:
-  ConnectorUrl: ''
 jobs:
 
   build:
