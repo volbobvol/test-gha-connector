@@ -6,7 +6,6 @@ on:
 
 env:
   ConnectorUrl: 'https://qhmfr8dr-44353.euw.devtunnels.ms/'
-#connector-url: 'https://githubactions.connectors.fqa.test.signpath.io:15021/'
 jobs:
 
   build:
