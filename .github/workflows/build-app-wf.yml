@@ -5,7 +5,7 @@ on:
  pull_request:
 
 env:
-  ConnectorUrl: 'https://qhmfr8dr-44353.euw.devtunnels.ms/'
+  ConnectorUrl: ''
 jobs:
 
   build:
@@ -48,7 +48,7 @@ jobs:
     - name: check if connector is accessible
      uses: satak/webrequest-action@master
      with:
-       url: ${{ env.ConnectorUrl }}healthz
+       url: 'https://qhmfr8dr-44353.euw.devtunnels.ms/healthz'
        method: GET    
     - name: check if SignPath is accessible
      uses: satak/webrequest-action@master
@@ -59,7 +59,7 @@ jobs:
       id: "submit_with_download_org1"
       uses: SignPath/github-actions/actions/submit-signing-request@feature/SIGN-6714
       with:
-        connector-url: ${{ env.ConnectorUrl }} 
+        connector-url: 'https://qhmfr8dr-44353.euw.devtunnels.ms/' 
         api-token: '${{ secrets.SIGN_PATH_API_TOKEN_FQA_ORG1 }}'
         organization-id: '54145c58-966f-4f56-83c3-4fda3f27da37'
         project-slug: 'GithubTestOrg1'
