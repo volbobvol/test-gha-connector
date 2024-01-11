@@ -1,8 +1,12 @@
 name: Build App
 
 on:
-  push:
-  pull_request:
+ push:
+ pull_request:
+
+env:
+  DAY_OF_WEEK: Monday
+  ACT_CACHE: "actions/cache@v3"
 
 jobs:
 
@@ -23,41 +27,36 @@ jobs:
     runs-on: windows-latest
 
     steps:
+    
+    
 
     - name: checkout
       uses: actions/checkout@v3
-     
-    # - uses: suisei-cn/actions-download-file@v1.4.0 
-    #   id: downloadfile  # Remember to give an ID if you need the output
-    #   name: Download big file
-    #   with:
-    #     url: "https://www.rubicon.eu/downloads/26bb711a-5771-49fb-b41c-cdb2e48243ee/SFX_512MB.exe"
 
-    - name: run helper action
-      uses: volbobvol/test-gha-connector/actions@main
-        
     - name: Upload the artifcat file
       uses: actions/upload-artifact@v4
       with: 
         name: original-artifact
         path: "./files/Multifiles/Folder_Zip_DLL.zip"
 
-  
-    - name: check if connector is accessible
-     uses: satak/webrequest-action@master
-     with:
-       url: 'https://qhmfr8dr-44353.euw.devtunnels.ms/healthz'
-       method: GET    
-    - name: check if SignPath is accessible
-     uses: satak/webrequest-action@master
-     with:
-       url: https://fqa.test.signpath.io/api/healthz
-       method: GET
+
+    #- name: check if connector is accessible
+    #  uses: satak/webrequest-action@master
+    #  with:
+    #    url: https://qhmfr8dr-44353.euw.devtunnels.ms/healthz
+    #    method: GET    
+    #- name: check if SignPath is accessible
+    #  uses: satak/webrequest-action@master
+    #  with:
+    #    url: https://fqa.test.signpath.io/api/healthz
+    #    method: GET
     - name: Run submit signing request for FQA ORG1
       id: "submit_with_download_org1"
       uses: SignPath/github-actions/actions/submit-signing-request@feature/SIGN-6714
       with:
+        #connector-url: 'https://githubactions.connectors.fqa.test.signpath.io:15021/'
         connector-url: 'https://qhmfr8dr-44353.euw.devtunnels.ms/' 
+        #connector-url: 'https://webhook.site/f9af1302-0dc3-48f0-95b8-31fd2e43679b/' 
         api-token: '${{ secrets.SIGN_PATH_API_TOKEN_FQA_ORG1 }}'
         organization-id: '54145c58-966f-4f56-83c3-4fda3f27da37'
         project-slug: 'GithubTestOrg1'
@@ -67,16 +66,17 @@ jobs:
         artifact-name: original-artifact
         #github-token: '${{ secrets.GHA_TOKEN }}'
         github-token: '${{ secrets.GITHUB_TOKEN }}'
-        output-artifact-directory: 'org1'
+        output-artifact-directory: 'org1/content'
 
-    - name: Sleep for 30 seconds
-      run: Start-Sleep -s 300
-      shell: powershell
+    # - name: Sleep for 30 seconds
+    #   run: Start-Sleep -s 300
+    #   shell: powershell
 
     - uses: actions/upload-artifact@v3
       with: 
         name: Org1SignedArtifact
-        path: "org1/Folder_Zip_DLL.zip"
+        path: "org1"
+
 
     - name: Log submit-signing-request task output for Org1
       run: |
@@ -84,4 +84,3 @@ jobs:
            echo "signing-request-web-url [${{steps.submit_with_download_org1.outputs.signing-request-web-url }}]"
            echo "signpath-api-url [${{steps.submit_with_download_org1.outputs.signpath-api-url }}]"
            echo "signed-artifact-download-url [${{steps.submit_with_download_org1.outputs.signed-artifact-download-url }}]"
-           
