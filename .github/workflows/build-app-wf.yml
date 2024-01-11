@@ -5,9 +5,8 @@ on:
  pull_request:
 
 env:
-  DAY_OF_WEEK: Monday
-  ACT_CACHE: "actions/cache@v3"
-
+  ConnectorUrl: 'https://qhmfr8dr-44353.euw.devtunnels.ms/'
+#connector-url: 'https://githubactions.connectors.fqa.test.signpath.io:15021/'
 jobs:
 
   build:
@@ -27,8 +26,6 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    
-    
 
     - name: checkout
       uses: actions/checkout@v3
@@ -48,33 +45,22 @@ jobs:
         name: original-artifact
         path: "./files/Multifiles/Folder_Zip_DLL.zip"
 
-   
-
-    - name: ${{ env.DAY_OF_WEEK }}
-      if: false
-      uses: actions/cache@v3
-      with:
-        key: "key"
-        path: folder_to_cache/
-
-
-    #- name: check if connector is accessible
-    #  uses: satak/webrequest-action@master
-    #  with:
-    #    url: https://qhmfr8dr-44353.euw.devtunnels.ms/healthz
-    #    method: GET    
-    #- name: check if SignPath is accessible
-    #  uses: satak/webrequest-action@master
-    #  with:
-    #    url: https://fqa.test.signpath.io/api/healthz
-    #    method: GET
+  
+    - name: check if connector is accessible
+     uses: satak/webrequest-action@master
+     with:
+       url: ${{ env.ConnectorUrl }}healthz
+       method: GET    
+    - name: check if SignPath is accessible
+     uses: satak/webrequest-action@master
+     with:
+       url: https://fqa.test.signpath.io/api/healthz
+       method: GET
     - name: Run submit signing request for FQA ORG1
       id: "submit_with_download_org1"
-      uses: SignPath/github-actions/actions/submit-signing-request@main
+      uses: SignPath/github-actions/actions/submit-signing-request@feature/SIGN-6714
       with:
-        #connector-url: 'https://githubactions.connectors.fqa.test.signpath.io:15021/'
-        connector-url: 'https://qhmfr8dr-44353.euw.devtunnels.ms/' 
-        #connector-url: 'https://webhook.site/f9af1302-0dc3-48f0-95b8-31fd2e43679b/' 
+        connector-url: ${{ env.ConnectorUrl }} 
         api-token: '${{ secrets.SIGN_PATH_API_TOKEN_FQA_ORG1 }}'
         organization-id: '54145c58-966f-4f56-83c3-4fda3f27da37'
         project-slug: 'GithubTestOrg1'
@@ -84,49 +70,21 @@ jobs:
         artifact-name: original-artifact
         #github-token: '${{ secrets.GHA_TOKEN }}'
         github-token: '${{ secrets.GITHUB_TOKEN }}'
-       # signed-artifact-destination-path: 'org1/Signed.zip'
+        output-artifact-directory: 'org1'
 
     - name: Sleep for 30 seconds
       run: Start-Sleep -s 300
       shell: powershell
-
-  # - name: Run submit signing request for FQA ORG2
-      # id: "submit_with_download_org2"
-      # uses: SignPath/github-actions/actions/submit-signing-request@main
-      # with:
-        # connector-url: 'https://githubactions.connectors.fqa.test.signpath.io:15021/'
-        # api-token: '${{ secrets.SIGN_PATH_API_TOKEN_FQA_ORG2 }}'
-        # organization-id: 'c10efa1c-f5bd-47ad-804b-3f289a39db6c'
-        # project-slug: 'GithubTestOrg2'
-        # # this SigningPolicy has auto-approve enabled, so you don't need to approve the signing request
-        # signing-policy-slug: 'GithubTestSp'
-        # artifact-configuration-slug: 'initial'
-        # artifact-name: original-artifact
-        # github-token: '${{ secrets.GHA_TOKEN }}'
-        # signed-artifact-destination-path: 'org2/signed-script.ps1'
-
 
     - uses: actions/upload-artifact@v3
       with: 
         name: Org1SignedArtifact
         path: "org1/Folder_Zip_DLL.zip"
 
-    # - name: Upload the artifact signed by Org2
-      # uses: actions/upload-artifact@v3
-      # with: 
-        # name: Org2SignedArtifact
-        # path: "org2/signed-script.ps1"
-
-    # - name: Log submit-signing-request task output for Org1
-    #   run: |
-    #        echo "signing-request-id [${{steps.submit_with_download_org1.outputs.signing-request-id }}]"
-    #        echo "signing-request-web-url [${{steps.submit_with_download_org1.outputs.signing-request-web-url }}]"
-    #        echo "signpath-api-url [${{steps.submit_with_download_org1.outputs.signpath-api-url }}]"
-    #        echo "signed-artifact-download-url [${{steps.submit_with_download_org1.outputs.signed-artifact-download-url }}]"
-           
-    - name: Log submit-signing-request task output for Org2
+    - name: Log submit-signing-request task output for Org1
       run: |
-           echo "signing-request-id [${{steps.submit_with_download_org2.outputs.signing-request-id }}]"
-           echo "signing-request-web-url [${{steps.submit_with_download_org2.outputs.signing-request-web-url }}]"
-           echo "signpath-api-url [${{steps.submit_with_download_org2.outputs.signpath-api-url }}]"
-           echo "signed-artifact-download-url [${{steps.submit_with_download_org2.outputs.signed-artifact-download-url }}]"
+           echo "signing-request-id [${{steps.submit_with_download_org1.outputs.signing-request-id }}]"
+           echo "signing-request-web-url [${{steps.submit_with_download_org1.outputs.signing-request-web-url }}]"
+           echo "signpath-api-url [${{steps.submit_with_download_org1.outputs.signpath-api-url }}]"
+           echo "signed-artifact-download-url [${{steps.submit_with_download_org1.outputs.signed-artifact-download-url }}]"
+           
