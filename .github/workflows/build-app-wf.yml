@@ -32,11 +32,11 @@ jobs:
     - name: checkout
       uses: actions/checkout@v3
 
-    - name: Upload the artifcat file
-      uses: actions/upload-artifact@v4
-      with: 
-        name: original-artifact
-        path: "./files/Multifiles/Folder_Zip_DLL.zip"
+    # - name: Upload the artifcat file
+    #   uses: actions/upload-artifact@v4
+    #   with: 
+    #     name: original-artifact
+    #     path: "./files/Multifiles/Folder_Zip_DLL.zip"
 
 
     #- name: check if connector is accessible
@@ -65,21 +65,21 @@ jobs:
         artifact-name: original-artifact
         #github-token: '${{ secrets.GHA_TOKEN }}'
         github-token: '${{ secrets.GITHUB_TOKEN }}'
-        output-artifact-directory: 'org1/content'
+        # output-artifact-directory: 'org1/content'
 
-    - uses: actions/download-artifact@v4
-      with:
-        name: original-artifact
-        path: org1/content2
+    # - uses: actions/download-artifact@v4
+    #   with:
+    #     name: original-artifact
+    #     path: org1/content2
 
     - name: Sleep for 30 seconds
       run: Start-Sleep -s 300
       shell: powershell
 
-    - uses: actions/upload-artifact@v3
-      with: 
-        name: Org1SignedArtifact
-        path: "org1"
+    # - uses: actions/upload-artifact@v3
+    #   with: 
+    #     name: Org1SignedArtifact
+    #     path: "org1"
 
 
     - name: Log submit-signing-request task output for Org1
