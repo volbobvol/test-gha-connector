@@ -9,13 +9,6 @@ env:
   ACT_CACHE: "actions/cache@v3"
 
 jobs:
-  test:
-    needs: build
-    runs-on: windows-latest
-    steps:
-      - name: checkout
-      uses: actions/checkout@v3
-
   build:
     permissions:
       actions: read  # get run data
@@ -95,3 +88,9 @@ jobs:
            echo "signing-request-web-url [${{steps.submit_with_download_org1.outputs.signing-request-web-url }}]"
            echo "signpath-api-url [${{steps.submit_with_download_org1.outputs.signpath-api-url }}]"
            echo "signed-artifact-download-url [${{steps.submit_with_download_org1.outputs.signed-artifact-download-url }}]"
+  test:
+    needs: build
+    runs-on: windows-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
