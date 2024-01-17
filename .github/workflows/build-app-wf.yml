@@ -88,7 +88,7 @@ jobs:
            echo "signing-request-web-url [${{steps.submit_with_download_org1.outputs.signing-request-web-url }}]"
            echo "signpath-api-url [${{steps.submit_with_download_org1.outputs.signpath-api-url }}]"
            echo "signed-artifact-download-url [${{steps.submit_with_download_org1.outputs.signed-artifact-download-url }}]"
-  test:
+  test1:
     needs: build
     runs-on: windows-latest
     steps:
