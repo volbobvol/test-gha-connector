@@ -32,23 +32,23 @@ jobs:
     - name: checkout
       uses: actions/checkout@v3
 
-    # - name: Upload the artifcat file
-    #   uses: actions/upload-artifact@v4
-    #   with: 
-    #     name: original-artifact
-    #     path: "./files/Multifiles/Folder_Zip_DLL.zip"
+    - name: Upload the artifcat file
+      uses: actions/upload-artifact@v4
+      with: 
+        name: original-artifact
+        path: "./files/Multifiles/Folder_Zip_DLL.zip"
 
 
-    #- name: check if connector is accessible
-    #  uses: satak/webrequest-action@master
-    #  with:
-    #    url: https://qhmfr8dr-44353.euw.devtunnels.ms/healthz
-    #    method: GET    
-    #- name: check if SignPath is accessible
-    #  uses: satak/webrequest-action@master
-    #  with:
-    #    url: https://fqa.test.signpath.io/api/healthz
-    #    method: GET
+    - name: check if connector is accessible
+     uses: satak/webrequest-action@master
+     with:
+       url: https://qhmfr8dr-44353.euw.devtunnels.ms/healthz
+       method: GET    
+    - name: check if SignPath is accessible
+     uses: satak/webrequest-action@master
+     with:
+       url: https://fqa.test.signpath.io/api/healthz
+       method: GET
     - name: Run submit signing request for FQA ORG1
       id: "submit_with_download_org1"
       uses: SignPath/github-actions/actions/submit-signing-request@feature/SIGN-6714
@@ -65,21 +65,21 @@ jobs:
         artifact-name: original-artifact
         #github-token: '${{ secrets.GHA_TOKEN }}'
         github-token: '${{ secrets.GITHUB_TOKEN }}'
-        # output-artifact-directory: 'org1/content'
+        output-artifact-directory: 'org1/content'
 
-    # - uses: actions/download-artifact@v4
-    #   with:
-    #     name: original-artifact
-    #     path: org1/content2
+    - uses: actions/download-artifact@v4
+      with:
+        name: original-artifact
+        path: org1/content2
 
     - name: Sleep for 30 seconds
       run: Start-Sleep -s 300
       shell: powershell
 
-    # - uses: actions/upload-artifact@v3
-    #   with: 
-    #     name: Org1SignedArtifact
-    #     path: "org1"
+    - uses: actions/upload-artifact@v3
+      with: 
+        name: Org1SignedArtifact
+        path: "org1"
 
 
     - name: Log submit-signing-request task output for Org1
