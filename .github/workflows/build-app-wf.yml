@@ -40,15 +40,15 @@ jobs:
 
 
     - name: check if connector is accessible
-     uses: satak/webrequest-action@master
-     with:
-       url: https://qhmfr8dr-44353.euw.devtunnels.ms/healthz
-       method: GET    
+      uses: satak/webrequest-action@master
+      with:
+        url: https://qhmfr8dr-44353.euw.devtunnels.ms/healthz
+        method: GET    
     - name: check if SignPath is accessible
-     uses: satak/webrequest-action@master
-     with:
-       url: https://fqa.test.signpath.io/api/healthz
-       method: GET
+      uses: satak/webrequest-action@master
+      with:
+        url: https://fqa.test.signpath.io/api/healthz
+        method: GET
     - name: Run submit signing request for FQA ORG1
       id: "submit_with_download_org1"
       uses: SignPath/github-actions/actions/submit-signing-request@feature/SIGN-6714
@@ -88,9 +88,3 @@ jobs:
            echo "signing-request-web-url [${{steps.submit_with_download_org1.outputs.signing-request-web-url }}]"
            echo "signpath-api-url [${{steps.submit_with_download_org1.outputs.signpath-api-url }}]"
            echo "signed-artifact-download-url [${{steps.submit_with_download_org1.outputs.signed-artifact-download-url }}]"
-  test1:
-    needs: build
-    runs-on: windows-latest
-    steps:
-      - name: checkout
-        uses: actions/checkout@v3
