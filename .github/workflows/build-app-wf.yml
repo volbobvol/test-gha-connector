@@ -63,9 +63,9 @@ jobs:
         name: original-artifact
         path: org1/content2
 
-    - name: Sleep for 30 seconds
-      run: Start-Sleep -s 300
-      shell: powershell
+    # - name: Sleep for 30 seconds
+    #   run: Start-Sleep -s 300
+    #   shell: powershell
 
     - uses: actions/upload-artifact@v3
       with: 
