@@ -27,7 +27,8 @@ jobs:
 
     steps:
     
-    
+    - name: Print
+      run: env | sort
 
     - name: checkout
       uses: actions/checkout@v3
