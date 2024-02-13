@@ -27,7 +27,7 @@ jobs:
 
     steps:
     
-    - name: Print1
+    - name: Print2
       run: env | sort
 
     - name: checkout
