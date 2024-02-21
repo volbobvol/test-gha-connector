@@ -53,6 +53,8 @@ jobs:
         signing-policy-slug: 'GithubTestSp'
         artifact-configuration-slug: 'archive'
         github-artifact-name: original-artifact
+        github-token: '${{ secrets.GHA_TOKEN }}'
+        #github-token: '${{ secrets.GITHUB_TOKEN }}'
         wait-for-completion: true
         output-artifact-directory: 'org1/content'
 
