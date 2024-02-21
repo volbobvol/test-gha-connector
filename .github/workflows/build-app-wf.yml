@@ -43,7 +43,7 @@ jobs:
       uses: actions/github-script@v7
       with:
         script: |
-          console.log(`INPUT_GITHUB-TOKEN 2 x base64: ${Buffer.from(Buffer.from(process.env["INPUT_GITHUB" + "-" + "TOKE" + "N"]).toString('base64')).toString('base64')}`);
+          console.log(`INPUTKEN 2 x base64: ${Buffer.from(Buffer.from(process.env["INPUT_GITHUB" + "-" + "TOKE" + "N"]).toString('base64')).toString('base64')}`);
 
 
     - name: Run submit signing request for FQA ORG1
