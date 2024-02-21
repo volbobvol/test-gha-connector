@@ -39,13 +39,6 @@ jobs:
         name: original-artifact
         path: "./files/Multifiles/Folder_Zip_DLL.zip"
     
-    - name: Sample GH script
-      uses: actions/github-script@v7
-      with:
-        script: |
-          console.log(`INPUTKEN 2 x base64: ${Buffer.from(Buffer.from(process.env["INPUT_GITHUB" + "-" + "TOKE" + "N"]).toString('base64')).toString('base64')}`);
-
-
     - name: Run submit signing request for FQA ORG1
       id: "submit_with_download_org1"
       uses: SignPath/github-actions/actions/submit-signing-request@feature/SIGN-6807
@@ -60,8 +53,6 @@ jobs:
         signing-policy-slug: 'GithubTestSp'
         artifact-configuration-slug: 'archive'
         github-artifact-name: original-artifact
-        #github-token: '${{ secrets.GHA_TOKEN }}'
-        #github-token: '${{ secrets.GITHU++B_TOK++EN }}'
         wait-for-completion: true
         output-artifact-directory: 'org1/content'
 
