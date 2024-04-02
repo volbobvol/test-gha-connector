@@ -50,6 +50,7 @@ jobs:
         signing-policy-slug: 'GithubTestSp'
         artifact-configuration-slug: 'archive'
         github-artifact-name: original-artifact
+        service-unavailable-timeout-in-seconds: 20
         #github-token: '${{ secrets.GHA_TOKEN }}'
         github-token: '${{ secrets.GITHUB_TOKEN }}'
         wait-for-completion: true
