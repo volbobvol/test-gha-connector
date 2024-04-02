@@ -27,9 +27,6 @@ jobs:
 
     steps:
     
-    - name: Print2
-      run: env | sort
-
     - name: checkout
       uses: actions/checkout@v3
 
@@ -40,11 +37,11 @@ jobs:
         path: "./files/Multifiles/Folder_Zip_DLL.zip"
     
     - name: Run submit signing request for FQA ORG1
-      id: "submit_with_download_org1"
-      uses: SignPath/github-actions/actions/submit-signing-request@feature/SIGN-6807
+      id: submit_with_download_org1
+      uses: SignPath/github-actions/actions/submit-signing-request@feature/SIGN-6807""
       with:
-        connector-url: 'https://githubactions.connectors.fqa.test.signpath.io:15021/'
-        #connector-url: 'https://7fk0b9xm-44353.euw.devtunnels.ms/' 
+        #connector-url: 'https://githubactions.connectors.fqa.test.signpath.io:15021/'
+        connector-url: 'https://7fk0b9xm-44353.euw.devtunnels.ms/' 
         #connector-url: 'https://webhook.site/f9af1302-0dc3-48f0-95b8-31fd2e43679b/' 
         api-token: '${{ secrets.SIGN_PATH_API_TOKEN_FQA_ORG1 }}'
         organization-id: '54145c58-966f-4f56-83c3-4fda3f27da37'
