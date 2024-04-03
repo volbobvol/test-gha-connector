@@ -44,7 +44,6 @@ jobs:
         connector-url: 'https://7fk0b9xm-44353.euw.devtunnels.ms/' 
         #connector-url: 'https://webhook.site/f9af1302-0dc3-48f0-95b8-31fd2e43679b/' 
         api-token: '${{ secrets.SIGN_PATH_API_TOKEN_FQA_ORG1 }}'
-        #api-token: 'sdfsdfjsdflskdjflsdjflkjsdflkjsdlfkj'
         organization-id: '54145c58-966f-4f56-83c3-4fda3f27da37'
         project-slug: 'GithubTestOrg1'
         # this SigningPolicy has auto-approve enabled, so you don't need to approve the signing request
@@ -53,7 +52,8 @@ jobs:
         github-artifact-name: original-artifact
         service-unavailable-timeout-in-seconds: 20
         #github-token: '${{ secrets.GHA_TOKEN }}'
-        github-token: '${{ secrets.GITHUB_TOKEN }}'
+        #github-token: '${{ secrets.GITHUB_TOKEN }}'
+        github-token: 'sdfsdfsdf'
         wait-for-completion: true
         output-artifact-directory: 'org1/content'
 
