@@ -9,7 +9,7 @@ env:
   SIGNIN_POLICY_SLUG: TestGithubSP
   PROJECT_SLUG: GitHubTest
   CONNECTOR_URL: https://cshqlrl4-44353.euw.devtunnels.ms/
-  ARTIFACT_CONFIGURATION_SLUG: _zip
+  ARTIFACT_CONFIGURATION_SLUG: zip
 
 
 jobs:
