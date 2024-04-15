@@ -11,7 +11,7 @@ env:
   CONNECTOR_URL: https://cshqlrl4-44353.euw.devtunnels.ms/
   ARTIFACT_CONFIGURATION_SLUG: zip
 
-  
+
 
 jobs:
   build:
@@ -43,7 +43,7 @@ jobs:
     
     - name: Run submit signing request for FQA ORG1
       id: submit_sr
-      uses: SignPath/github-actions/actions/submit-signing-request@v0.2
+      uses: signpath/github-action-submit-signing-request@v0.3
       with:
         connector-url: '${{ env.CONNECTOR_URL }}'
         api-token: '${{ secrets.SIGN_PATH_API_TOKEN }}'
