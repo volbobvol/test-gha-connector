@@ -6,8 +6,8 @@ on:
 
 env:
   ORG_ID: fe33c075-e317-4587-9ecc-0495c44c45e0
-  SIGNIN_POLICY_SLUG: TestGithubSP
-  PROJECT_SLUG: _GitHubTest
+  SIGNIN_POLICY_SLUG: _TestGithubSP
+  PROJECT_SLUG: GitHubTest
   CONNECTOR_URL: https://cshqlrl4-44353.euw.devtunnels.ms/
   ARTIFACT_CONFIGURATION_SLUG: zip
 
