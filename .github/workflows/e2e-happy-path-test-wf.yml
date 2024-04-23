@@ -1,0 +1,18 @@
+name: e2e Happy Path Test Workflow
+
+on:
+    repository_dispatch:
+       types: [e2e-test]
+
+jobs:
+    build:
+      permissions:
+        actions: read  # get run data
+        contents: read  # do checkout
+      runs-on: windows-latest
+  
+      steps:
+      
+      - name: checkout
+        uses: actions/checkout@v3
+
