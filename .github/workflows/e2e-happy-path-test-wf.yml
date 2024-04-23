@@ -7,9 +7,6 @@ on:
               required: true
               type: string
 
-env:
-    CONNECTOR_URL: ${{ inputs.connector-url }}
-
 jobs:
     build:
       permissions:
@@ -19,5 +16,5 @@ jobs:
   
       steps:
         - run: |
-            echo "Connector Url: $CONNECTOR_URL"
+            echo "Connector Url: ${{ inputs.connector-url }}"
 
