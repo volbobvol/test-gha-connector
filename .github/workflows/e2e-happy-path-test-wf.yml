@@ -6,6 +6,9 @@ on:
             connector-url:
               required: true
               type: string
+            workflow_dispatch_event_id:
+              required: true
+              type: string
 
 jobs:
     build:
