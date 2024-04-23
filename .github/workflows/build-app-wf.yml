@@ -1,8 +1,9 @@
 name: Build App
 
 on:
- push:
- pull_request:
+  workflow_dispatch:
+  #push:
+  #pull_request:
 
 env:
   ORG_ID: fe33c075-e317-4587-9ecc-0495c44c45e0
