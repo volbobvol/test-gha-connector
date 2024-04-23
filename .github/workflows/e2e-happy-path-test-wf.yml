@@ -1,8 +1,11 @@
 name: e2e Happy Path Test Workflow
 
 on:
-    repository_dispatch:
-       types: [e2e-test]
+    workflow_dispatch:
+        inputs:
+            connector-url:
+              required: true
+              type: string
 
 jobs:
     build:
