@@ -7,6 +7,9 @@ on:
               required: true
               type: string
 
+env:
+    CONNECTOR_URL: ${{ inputs.connector-url }}
+
 jobs:
     build:
       permissions:
@@ -15,7 +18,6 @@ jobs:
       runs-on: windows-latest
   
       steps:
-      
-      - name: checkout
-        uses: actions/checkout@v3
+        - run: |
+            echo "Connector Url: $CONNECTOR_URL"
 
