@@ -35,6 +35,12 @@ jobs:
     
     - name: checkout
       uses: actions/checkout@v3
+    
+    - name: Upload the artifcat file
+      uses: actions/upload-artifact@v3
+      with: 
+        name: original-artifact
+        path: "./files/hello-world.exe"
 
     - name: Upload the artifcat file
       uses: actions/upload-artifact@v4
