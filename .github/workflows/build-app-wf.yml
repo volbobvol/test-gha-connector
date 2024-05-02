@@ -53,7 +53,7 @@ jobs:
         signing-policy-slug: '${{ env.SIGNIN_POLICY_SLUG }}'
         artifact-configuration-slug: '${{ env.ARTIFACT_CONFIGURATION_SLUG }}'
         github-artifact-name: original-artifact
-        service-unavailable-timeout-in-seconds: 20
+        service-unavailable-timeout-in-seconds: 2000
         github-token: '${{ secrets.GITHUB_TOKEN }}'
         wait-for-completion: true
         output-artifact-directory: 'org1/content'
