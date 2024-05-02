@@ -9,7 +9,7 @@ env:
   ORG_ID: d69c815b-930b-48f9-898e-c7dbbfc98242
   SIGNIN_POLICY_SLUG: e2e-test-sp
   PROJECT_SLUG: e2e-gha-test-project
-  CONNECTOR_URL: https://cshqlrl4-44353.euw.devtunnels.ms/
+  CONNECTOR_URL: https://githubactions.connectors.signpath.io
   ARTIFACT_CONFIGURATION_SLUG: exe-in-zip
 
 
