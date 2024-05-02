@@ -6,11 +6,11 @@ on:
   #pull_request:
 
 env:
-  ORG_ID: fe33c075-e317-4587-9ecc-0495c44c45e0
-  SIGNIN_POLICY_SLUG: TestGithubSP
-  PROJECT_SLUG: GitHubTest
+  ORG_ID: d69c815b-930b-48f9-898e-c7dbbfc98242
+  SIGNIN_POLICY_SLUG: e2e-test-sp
+  PROJECT_SLUG: e2e-gha-test-project
   CONNECTOR_URL: https://cshqlrl4-44353.euw.devtunnels.ms/
-  ARTIFACT_CONFIGURATION_SLUG: zip
+  ARTIFACT_CONFIGURATION_SLUG: exe-in-zip
 
 
 
@@ -40,7 +40,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with: 
         name: original-artifact
-        path: "./files/Multifiles/Folder_Zip_DLL.zip"
+        path: "./files/hello-world.exe"
     
     - name: Run submit signing request for FQA ORG1
       id: submit_sr
@@ -67,7 +67,7 @@ jobs:
     #   run: Start-Sleep -s 300
     #   shell: powershell
 
-    - uses: actions/upload-artifact@v3
+    - uses: actions/upload-artifact@v4
       with: 
         name: Org1SignedArtifact
         path: "org1"
