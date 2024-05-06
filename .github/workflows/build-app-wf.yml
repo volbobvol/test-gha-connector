@@ -44,7 +44,7 @@ jobs:
     
     - name: Run submit signing request for FQA ORG1
       id: submit_sr
-      uses: signpath/github-action-submit-signing-request@v0.3
+      uses: signpath/github-action-submit-signing-request@feature/SIGN-6808
       with:
         connector-url: '${{ env.CONNECTOR_URL }}'
         api-token: '${{ secrets.SIGN_PATH_API_TOKEN }}'
