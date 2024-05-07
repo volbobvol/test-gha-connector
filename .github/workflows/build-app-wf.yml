@@ -62,7 +62,7 @@ jobs:
         output-artifact-directory: 'org1/content'
         parameters: |
           Version: "1.1.0.0"
-          Release_Tag: "v1.0"
+          productname: "MyTestProd"
 
     - uses: actions/download-artifact@v4
       with:
