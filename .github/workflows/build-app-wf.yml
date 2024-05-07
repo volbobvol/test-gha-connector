@@ -10,7 +10,7 @@ env:
   SIGNIN_POLICY_SLUG: e2e-test-sp
   PROJECT_SLUG: e2e-test-project
   CONNECTOR_URL: https://cshqlrl4-44353.euw.devtunnels.ms
-  ARTIFACT_CONFIGURATION_SLUG: initial
+  ARTIFACT_CONFIGURATION_SLUG: zip
 
 
 
