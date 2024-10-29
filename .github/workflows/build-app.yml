@@ -6,7 +6,7 @@ on:
 env:
   ORG_ID: fe33c075-e317-4587-9ecc-0495c44c45e0
   SIGNIN_POLICY_SLUG: e2e-test-sp
-  PROJECT_SLUG: e2e-test-project
+  PROJECT_SLUG: e2e-gha-test-project
   CONNECTOR_URL: https://x8qqnrvl-44353.euw.devtunnels.ms
   ARTIFACT_CONFIGURATION_SLUG: zip
 
