@@ -1,0 +1,7 @@
+github-policies:
+  branch_rulesets:
+    - condition:
+        rules:
+          - code_scanning
+        allow_bypass_actors: false
+        enforced_from: CURRENT_BUILD
