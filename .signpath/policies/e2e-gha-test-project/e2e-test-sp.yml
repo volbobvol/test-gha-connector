@@ -3,5 +3,5 @@ github-policies:
     - condition:
         rules:
           - code_scanning
-        allow_bypass_actors: false
+        allow_bypass_actors: true
         enforced_from: CURRENT_BUILD
