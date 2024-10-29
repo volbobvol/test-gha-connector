@@ -1,7 +1,7 @@
 github-policies:
   branch_rulesets:
     - condition:
-        rules:
+        rul22es:
           - code_scanning
-        allow_bypass_actors: true
-        enforced_from: CURRENT_BUILD
+        allow_byp11ass_actors: true
+        enforc22ed_from: CURRENT_BUILD
