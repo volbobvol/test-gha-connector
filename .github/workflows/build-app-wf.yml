@@ -2,58 +2,19 @@ name: Build App
 
 on:
   workflow_dispatch:
-  #push:
-  #pull_request:
 
 env:
   ORG_ID: fe33c075-e317-4587-9ecc-0495c44c45e0
   SIGNIN_POLICY_SLUG: e2e-test-sp
   PROJECT_SLUG: e2e-test-project
-  CONNECTOR_URL: https://cshqlrl4-44353.euw.devtunnels.ms
+  CONNECTOR_URL: https://x8qqnrvl-44353.euw.devtunnels.ms
   ARTIFACT_CONFIGURATION_SLUG: zip
 
-
-
 jobs:
-  job1:
-    runs-on: windows-latest
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-  job2:
-    runs-on: windows-latest
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-  job3:
-    runs-on: windows-latest
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-  job4:
-    runs-on: windows-latest
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-  job5:
-    runs-on: windows-latest
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-    
-  build:
+  build-and-sign:
     permissions:
       actions: read  # get run data
-      #checks: write
       contents: read  # do checkout
-      # deployments: write
-      # id-token: write
-      # issues: write
-      # discussions: write
-      # packages: write
-      # pages: write
-      # repository-projects: write
-      # statuses: write
 
     runs-on: windows-latest
 
@@ -61,19 +22,16 @@ jobs:
     
     - name: checkout
       uses: actions/checkout@v3
-    
-   
+
     - name: Upload the artifcat file
+      id: upload-artifact
       uses: actions/upload-artifact@v4
       with: 
         name: original-artifact
         path: "./files/hello-world.exe"
 
-  
-    
-    - name: Run submit signing request for FQA ORG1
-      id: submit_sr
-      uses: signpath/github-action-submit-signing-request@feature/SIGN-6808
+    - name: Submit signing request
+      uses: signpath/github-action-submit-signing-request@main
       with:
         connector-url: '${{ env.CONNECTOR_URL }}'
         api-token: '${{ secrets.SIGN_PATH_API_TOKEN }}'
@@ -81,33 +39,6 @@ jobs:
         project-slug: '${{ env.PROJECT_SLUG }}'
         signing-policy-slug: '${{ env.SIGNIN_POLICY_SLUG }}'
         artifact-configuration-slug: '${{ env.ARTIFACT_CONFIGURATION_SLUG }}'
-        github-artifact-name: original-artifact
-        service-unavailable-timeout-in-seconds: 2000
-        github-token: '${{ secrets.GITHUB_TOKEN }}'
+         github-artifact-id: '${{steps.upload-artifact.outputs.artifact-id}}'
         wait-for-completion: true
-        output-artifact-directory: 'org1/content'
-        parameters: |
-          Version: "1.1.0.0"
-          productname: "HelloSignPathDemo"
-
-    - uses: actions/download-artifact@v4
-      with:
-        name: original-artifact
-        path: org1/content2
-
-    # - name: Sleep for 30 seconds
-    #   run: Start-Sleep -s 300
-    #   shell: powershell
-
-    - uses: actions/upload-artifact@v4
-      with: 
-        name: Org1SignedArtifact
-        path: "org1"
-
-
-    - name: Log submit-signing-request task output
-      run: |
-           echo "signing-request-id [${{steps.submit_sr.outputs.signing-request-id }}]"
-           echo "signing-request-web-url [${{steps.submit_sr.outputs.signing-request-web-url }}]"
-           echo "signpath-api-url [${{steps.submit_sr.outputs.signpath-api-url }}]"
-           echo "signed-artifact-download-url [${{steps.submit_sr.outputs.signed-artifact-download-url }}]"
+        output-artifact-directory: 'org/content'
