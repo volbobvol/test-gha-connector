@@ -8,7 +8,7 @@ env:
   SIGNIN_POLICY_SLUG: e2e-test-sp
   PROJECT_SLUG: e2e-gha-test-project
   CONNECTOR_URL: https://x8qqnrvl-44353.euw.devtunnels.ms
-  ARTIFACT_CONFIGURATION_SLUG: zip
+  ARTIFACT_CONFIGURATION_SLUG: exe-in-zip
 
 jobs:
   build-and-sign:
