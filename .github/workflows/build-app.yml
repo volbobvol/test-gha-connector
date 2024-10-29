@@ -23,22 +23,22 @@ jobs:
     - name: checkout
       uses: actions/checkout@v3
 
-    # - name: Upload the artifcat file
-    #   id: upload-artifact
-    #   uses: actions/upload-artifact@v4
-    #   with: 
-    #     name: original-artifact
-    #     path: "./files/hello-world.exe"
+    - name: Upload the artifcat file
+      id: upload-artifact
+      uses: actions/upload-artifact@v4
+      with: 
+        name: original-artifact
+        path: "./files/hello-world.exe"
 
-    # - name: Submit signing request
-    #   uses: signpath/github-action-submit-signing-request@main
-    #   with:
-    #     connector-url: '${{ env.CONNECTOR_URL }}'
-    #     api-token: '${{ secrets.SIGN_PATH_API_TOKEN }}'
-    #     organization-id: '${{ env.ORG_ID }}'
-    #     project-slug: '${{ env.PROJECT_SLUG }}'
-    #     signing-policy-slug: '${{ env.SIGNIN_POLICY_SLUG }}'
-    #     artifact-configuration-slug: '${{ env.ARTIFACT_CONFIGURATION_SLUG }}'
-    #      github-artifact-id: '${{steps.upload-artifact.outputs.artifact-id}}'
-    #     wait-for-completion: true
-    #     output-artifact-directory: 'org/content'
+    - name: Submit signing request
+      uses: signpath/github-action-submit-signing-request@main
+      with:
+        connector-url: '${{ env.CONNECTOR_URL }}'
+        api-token: '${{ secrets.SIGN_PATH_API_TOKEN }}'
+        organization-id: '${{ env.ORG_ID }}'
+        project-slug: '${{ env.PROJECT_SLUG }}'
+        signing-policy-slug: '${{ env.SIGNIN_POLICY_SLUG }}'
+        artifact-configuration-slug: '${{ env.ARTIFACT_CONFIGURATION_SLUG }}'
+        github-artifact-id: '${{steps.upload-artifact.outputs.artifact-id}}'
+        wait-for-completion: true
+        output-artifact-directory: 'org/content'
