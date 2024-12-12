@@ -19,7 +19,13 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    
+
+    - name: runjs
+      uses: "actions/github-script@v6"
+      with:
+        script: |
+                const core = require("@actions/core");
+                core.error('ERROR');
     - name: checkout
       uses: actions/checkout@v3
 
