@@ -3,14 +3,7 @@
 name: e2e big exe tests
 
 on:
-    workflow_dispatch:
-      inputs:
-        environment:
-          required: true
-          type: string
-        workflow-dispatch-event-id:
-          required: true
-          type: string
+    workflow_dispatch:        
 jobs:
   build:
     runs-on: windows-latest
