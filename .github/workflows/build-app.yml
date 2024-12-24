@@ -22,7 +22,7 @@ jobs:
         uses: signpath/github-action-submit-signing-request@main
         with:
             connector-url: https://m6vtkll5-44353.euw.devtunnels.ms/
-            api-token: '${{ secrets.SIGNPATH_API_TOKEN }}'
+            api-token: '${{ secrets.SIGN_PATH_API_TOKEN }}'
             organization-id: fe33c075-e317-4587-9ecc-0495c44c45e0
             project-slug: executable
             # this SigningPolicy has auto-approve enabled, so you don't need to approve the signing request
