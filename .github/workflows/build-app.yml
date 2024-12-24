@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 env:
-  ORG_ID: fe33c075-e317-4587-9ecc-0495c44c45e0
+  ORGANIZATION_ID: fe33c075-e317-4587-9ecc-0495c44c45e0
   SIGNIN_POLICY_SLUG: e2e-test-sp
   PROJECT_SLUG: e2e-gha-test-project
   CONNECTOR_URL: https://x8qqnrvl-44353.euw.devtunnels.ms
@@ -20,9 +20,15 @@ jobs:
 
     steps:
 
-    - name: runjs
-      uses: "actions/github-script@v6"
-      with:
-        script: |
-                core.error('MY ERROR');
+    - name: Run submit signing request
+        uses: signpath/github-action-submit-signing-request@main
+        with:
+            connector-url: ${{ vars.CONNECTOR_URL }}
+            api-token: '${{ secrets.SIGNPATH_API_TOKEN }}'
+            organization-id: ${{ vars.ORGANIZATION_ID }}
+            project-slug:  ${{ vars.PROJECT_SLUG }}
+            signing-policy-slug:  ${{ vars.SIGNIN_POLICY_SLUG }}
+            artifact-configuration-slug: exe-in-zip
+            github-artifact-id: '${{ steps.upload-artifact-step.outputs.artifact-id }}'
+            output-artifact-directory: signed-artifact
 
