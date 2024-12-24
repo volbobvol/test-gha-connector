@@ -30,8 +30,8 @@ jobs:
         with:
             connector-url: https://m6vtkll5-44353.euw.devtunnels.ms/
             api-token: '${{ secrets.SIGNPATH_API_TOKEN }}'
-            organization-id: ${{ vars.ORGANIZATION_ID }}
-            project-slug: e2e-gha-test-project
+            organization-id: fe33c075-e317-4587-9ecc-0495c44c45e0
+            project-slug: executable
             # this SigningPolicy has auto-approve enabled, so you don't need to approve the signing request
             signing-policy-slug: e2e-test-sp
             artifact-configuration-slug: exe-in-zip
