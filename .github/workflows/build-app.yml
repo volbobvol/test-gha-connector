@@ -1,34 +1,40 @@
-name: Build and Sign
+# this workflow is intended to test the behavior of the system when a large artifact is submitted for signing
+# besides other aspects it helps to check signed artifacts downloading back to the runner
+name: e2e big exe tests
 
 on:
-  workflow_dispatch:
-
-env:
-  ORGANIZATION_ID: fe33c075-e317-4587-9ecc-0495c44c45e0
-  SIGNIN_POLICY_SLUG: e2e-test-sp
-  PROJECT_SLUG: e2e-gha-test-project
-  CONNECTOR_URL: https://x8qqnrvl-44353.euw.devtunnels.ms
-  ARTIFACT_CONFIGURATION_SLUG: exe-in-zip
-
+    workflow_dispatch:
+      inputs:
+        environment:
+          required: true
+          type: string
+        workflow-dispatch-event-id:
+          required: true
+          type: string
 jobs:
-  build-and-sign:
-    permissions:
-      actions: read  # get run data
-      contents: read  # do checkout
-
+  build:
     runs-on: windows-latest
-
+    environment: ${{ inputs.environment }}
     steps:
-
-    - name: Run submit signing request
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Upload the artifcat file
+        id: upload-artifact-step
+        uses: actions/upload-artifact@v4
+        with: 
+          name: original-artifact
+          path: ./artifacts/big.exe
+      - name: Run submit signing request
+        id: submit_with_download
         uses: signpath/github-action-submit-signing-request@main
         with:
-            connector-url: ${{ vars.CONNECTOR_URL }}
+            connector-url: https://m6vtkll5-44353.euw.devtunnels.ms/
             api-token: '${{ secrets.SIGNPATH_API_TOKEN }}'
             organization-id: ${{ vars.ORGANIZATION_ID }}
-            project-slug:  ${{ vars.PROJECT_SLUG }}
-            signing-policy-slug:  ${{ vars.SIGNIN_POLICY_SLUG }}
+            project-slug: e2e-gha-test-project
+            # this SigningPolicy has auto-approve enabled, so you don't need to approve the signing request
+            signing-policy-slug: e2e-test-sp
             artifact-configuration-slug: exe-in-zip
             github-artifact-id: '${{ steps.upload-artifact-step.outputs.artifact-id }}'
+            wait-for-completion: true
             output-artifact-directory: signed-artifact
-
