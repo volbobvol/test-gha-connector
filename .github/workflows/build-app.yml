@@ -23,7 +23,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with: 
           name: original-artifact
-          path: ./artifacts/big.exe
+          path: ./files/hello-world.exe
       - name: Run submit signing request
         id: submit_with_download
         uses: signpath/github-action-submit-signing-request@main
@@ -33,8 +33,8 @@ jobs:
             organization-id: fe33c075-e317-4587-9ecc-0495c44c45e0
             project-slug: executable
             # this SigningPolicy has auto-approve enabled, so you don't need to approve the signing request
-            signing-policy-slug: e2e-test-sp
-            artifact-configuration-slug: exe-in-zip
+            signing-policy-slug: test-signing
+            artifact-configuration-slug: initial
             github-artifact-id: '${{ steps.upload-artifact-step.outputs.artifact-id }}'
             wait-for-completion: true
             output-artifact-directory: signed-artifact
