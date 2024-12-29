@@ -5,7 +5,7 @@ name: e2e big exe tests
 on:
     workflow_dispatch:        
 jobs:
-  build:
+  build1:
     name: "build"
     runs-on: windows-latest
     environment: ${{ inputs.environment }}
