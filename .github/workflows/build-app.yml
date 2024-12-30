@@ -13,7 +13,6 @@ jobs:
       - name: Step2
         run: exit 1
   build:
-    needs: [job2]
     runs-on: windows-latest
     environment: ${{ inputs.environment }}
     steps:
