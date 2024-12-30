@@ -5,7 +5,15 @@ name: e2e big exe tests
 on:
     workflow_dispatch:        
 jobs:
+  job2:
+    name: Skippable Step
+    if: ${{1 == 0}}
+    runs-on: custom_runner
+    steps:
+      - name: Step2
+        run: exit 1
   build:
+    needs: [job2]
     runs-on: windows-latest
     environment: ${{ inputs.environment }}
     steps:
